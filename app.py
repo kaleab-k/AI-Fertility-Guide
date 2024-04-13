@@ -8,15 +8,26 @@ def main():
         menu_items={"About": "Welcome to EmpowerCare, a revolutionary AI-assisted reproductive health resource center designed to empower you with personalized, comprehensive information that respects and responds to your unique reproductive health needs.", "Get help": None, "Report a Bug": None}
     )
 
-    if 'start_questions' not in st.session_state:
-        st.session_state.start_questions = False
+    # Sidebar for navigation
+    st.sidebar.title("Navigation")
+    if st.sidebar.button("Welcome"):
+        st.session_state['current_page'] = 'welcome'
+    if st.sidebar.button("Questions"):
+        st.session_state['current_page'] = 'questions'
 
-    if not st.session_state.start_questions:
+    # Display pages based on sidebar navigation choices
+    if 'current_page' not in st.session_state:
+        st.session_state['current_page'] = 'welcome'  # Default page
+
+    if st.session_state['current_page'] == 'welcome':
         welcome_page()
-    else:
+    elif st.session_state['current_page'] == 'questions':
         questions_page()
 
+
 def welcome_page():
+    st.title("Welcome to EmpowerCare!")
+
     st.header("Greetings")
     st.write("Welcome to EmpowerCare! We're excited to guide you through your personalized reproductive health journey. Our platform is designed to offer you tailored advice, clear information, and support that respects your unique needs and privacy. Get started today and take the first step towards informed and empowered health decisions. Thank you for trusting EmpowerCare—where your health and privacy come first.")
 
