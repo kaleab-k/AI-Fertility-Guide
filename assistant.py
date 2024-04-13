@@ -69,8 +69,11 @@ def create_openai_assistant_prompt(user_data):
     return prompt
 
 
+def get_client(api_key):
+    return OpenAI(api_key=api_key)
+
 def generate_response(user_data, api_key):
-    client = OpenAI(api_key=api_key)
+    client = get_client(api_key)
 
     prompt = create_openai_assistant_prompt(user_data)
 
@@ -83,5 +86,5 @@ def generate_response(user_data, api_key):
     #     temperature=0.5   # A lower temperature for more focused and deterministic output
     # )
 
-    return response.choices[0].message.content
+    return client, response.choices[0].message.content
 
