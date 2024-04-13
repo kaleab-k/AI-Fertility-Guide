@@ -29,7 +29,7 @@ def display_response(user_data=None, openai_api_key=None):
     # Assuming generate_advice is a function that sends data to OpenAI and gets a response
     client, response = generate_response(user_data, openai_api_key)
     # st.write(response)
-    st.chat_message("assistant").write(user_data)
+    st.chat_message("assistant").write(response)
 
     if "messages" not in st.session_state:
         st.session_state["messages"] = [{"role": "assistant", "content": "How can I further assist you?"}]
