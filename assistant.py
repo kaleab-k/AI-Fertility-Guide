@@ -1,9 +1,9 @@
 
-import openai
+from openai import OpenAI
 
-def create_openai_assistant_prompt(user_data, api_key):
 
-    oepnai.api_key = api_key
+def create_openai_assistant_prompt(user_data):
+
     # Constructing a detailed prompt based on the comprehensive user data collected
     prompt = f"""
     User Profile:
@@ -70,14 +70,18 @@ def create_openai_assistant_prompt(user_data, api_key):
 
 
 def generate_response(user_data, api_key):
+    client = OpenAI(api_key=api_key)
 
-    prompt = create_openai_assistant_prompt(user_data, api_key)
-    response = oepnai.Completion.create(
-        engine="davinci",
-        prompt=prompt,
-        max_tokens=500,  # Adjust based on the expected length of the response
-        temperature=0.5   # A lower temperature for more focused and deterministic output
-    )
+    prompt = create_openai_assistant_prompt(user_data)
 
-    return response.choices[0].text.strip()
+    response = client.chat.completions.create(model="gpt-3.5-turbo", messages=prompt)
+
+    # response = oepnai.Completion.create(
+    #     engine="davinci",
+    #     prompt=prompt,
+    #     max_tokens=500,  # Adjust based on the expected length of the response
+    #     temperature=0.5   # A lower temperature for more focused and deterministic output
+    # )
+
+    return response.choices[0].message.content
 
