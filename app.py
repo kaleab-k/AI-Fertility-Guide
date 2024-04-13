@@ -18,9 +18,15 @@ def main():
         welcome_page()
     elif app_mode == "Fill Questionnaire":
         questionnaire()
+    
+    if 'current_page' not in st.session_state:
+        st.session_state['current_page'] = 'welcome'  # Default page
 
-    if st.session_state.current_page == 'questions':
+    if st.session_state['current_page'] == 'welcome':
+        welcome_page()
+    elif st.session_state['current_page'] == 'questions':
         questionnaire()
+
 
 
 def welcome_page():
