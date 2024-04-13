@@ -69,8 +69,9 @@ def privacy_concent():
     # Feedback and Consent
     st.radio("Do you consent to have this information used to tailor health advice specifically for you?", ["Yes", "No"], key="consent")
     if st.button("Finish"):
-        compile_user_data()
+        user_data = compile_user_data()
         st.success("Profile Submitted Successfully!")
+        st.info(user_data)
         # st.session_state.current_page = 'chat'
         
 
