@@ -49,7 +49,7 @@ def collect_personal_info():
 def collect_health_status():
     # Health Status
     general_health = st.selectbox("How would you describe your overall health?", ["Excellent", "Good", "Fair", "Poor"], key="health")
-    currentl_medications_q = st.radio("Are you currently taking any medications?", ["Yes", "No"], key="currentl_medications")
+    currentl_medications_q = st.radio("Are you currently taking any medications?", ["Yes", "No"])
     if currentl_medications_q == "Yes":
         currentl_medications = st.text_area("Types of medications being used", key="medication_types")
     allergies_q = st.radio("Do you have any known allergies or adverse reactions to medications?", ["Yes", "No"])
