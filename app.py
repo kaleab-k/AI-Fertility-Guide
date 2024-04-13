@@ -3,7 +3,7 @@ import streamlit as st
 def main():
     st.set_page_config(
         page_title="EmpowerCare",
-        page_icon="https://www.svgrepo.com/show/137210/health-care.svg",
+        page_icon="https://www.svgrepo.com/show/287894/care.svg",
         menu_items={
             "About": "Welcome to EmpowerCare, a revolutionary AI-assisted reproductive health resource center designed to empower you with personalized, comprehensive information that respects and responds to your unique reproductive health needs.",
             "Get help": None,
@@ -99,6 +99,9 @@ def preferences_concerns():
     cultural_concerns = st.text_area("Are there cultural or ethical considerations that we should take into account when providing you with health information?")
     learning_preferences = st.selectbox("What are your preferences for learning about health topics?", ["Reading articles", "Watching videos", "Speaking to a professional", "Other"])
     consultation_interest = st.radio("Would you be interested in a follow-up consultation with a healthcare provider?", ["Yes", "No"])
+    
+    navigate()
+    
 def privacy_concent():
     # Feedback and Consent
     consent = st.radio("Do you consent to have this information used to tailor health advice specifically for you?", ["Yes", "No"])
