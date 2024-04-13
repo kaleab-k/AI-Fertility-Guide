@@ -39,7 +39,7 @@ def main():
 
 def go_to_questions():
     st.session_state['current_page'] = 'questions'
-    st.rerun()
+    main()
 
 def welcome_page():
     st.title("Welcome to EmpowerCare!")
