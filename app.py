@@ -43,9 +43,11 @@ def welcome_page():
 
     def go_to_questions():
         st.session_state.current_page = 'questions'
-        st.experimental_rerun()
         
-    st.button("Get Started", on_click=go_to_questions)
+        
+    if st.button("Get Started"):
+        st.session_state.current_page = 'questions'
+        st.experimental_rerun()
 
 
 def collect_personal_info():
