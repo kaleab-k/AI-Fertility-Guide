@@ -49,37 +49,36 @@ def collect_personal_info():
 def collect_health_status():
     # Health Status
     general_health = st.selectbox("How would you describe your overall health?", ["Excellent", "Good", "Fair", "Poor"], key="health")
-    currentl_medications = st.radio("Are you currently taking any medications?", ["Yes", "No"], key="currentl_medications")
-    if currentl_medications == "Yes":
+    currentl_medications_q = st.radio("Are you currently taking any medications?", ["Yes", "No"], key="currentl_medications")
+    if currentl_medications_q == "Yes":
         currentl_medications = st.text_area("Types of medications being used", key="medication_types")
-    allergies = st.radio("Do you have any known allergies or adverse reactions to medications?", ["Yes", "No"])
-    if allergies == "Yes":
+    allergies_q = st.radio("Do you have any known allergies or adverse reactions to medications?", ["Yes", "No"])
+    if allergies_q == "Yes":
         allergies = st.text_area("List of allergies")
-    known_conditions = st.radio("Do you have any known health conditions that affect your reproductive health?", ["Yes", "No"])
-    if known_conditions == "Yes":
+    known_conditions_q = st.radio("Do you have any known health conditions that affect your reproductive health?", ["Yes", "No"])
+    if known_conditions_q == "Yes":
         known_conditions = st.text_area("List health conditions")
 
     navigate()
 
 def collect_reproductive_history():
     # Reproductive History
-    current_contraception = st.radio("Are you currently using any form of contraception?", ["Yes", "No"])
-    if current_contraception == "Yes":
+    current_contraception_q = st.radio("Are you currently using any form of contraception?", ["Yes", "No"])
+    if current_contraception_q == "Yes":
         current_contraception = st.text_area("Types of contraception being used")
-    past_contraception = st.radio("Have you used any contraceptive methods in the past?", ["Yes", "No"])
-    if past_contraception == "Yes":
+    past_contraception_q = st.radio("Have you used any contraceptive methods in the past?", ["Yes", "No"])
+    if past_contraception_q == "Yes":
         past_contraception = st.text_area("Types of contraception used")
-    past_contraception = st.text_area("Have you used any contraceptive methods in the past?")
-    family_history = st.radio("Have there been any fertility or pregnancy-related issues in your family history?", ["Yes", "No"])
-    if family_history == "Yes":
+    family_history_q = st.radio("Have there been any fertility or pregnancy-related issues in your family history?", ["Yes", "No"])
+    if family_history_q == "Yes":
         family_history = st.text_area("Details")
 
     navigate()
 
 def collect_insurance_info():
     # Insurance Information
-    insurance_provider = st.radio("Do you have health insurance?", ["Yes", "No"])
-    if insurance_provider == "Yes":
+    insurance_provider_q = st.radio("Do you have health insurance?", ["Yes", "No"])
+    if insurance_provider_q == "Yes":
         insurance_provider = st.text_input("Which provider?")
     need_assistance = st.radio("Do you need assistance finding clinics that accept your insurance?", ["Yes", "No"])
 
@@ -87,8 +86,8 @@ def collect_insurance_info():
 
 def collect_future_planning():
     # Future Planning
-    planning_family = st.radio("Are you considering starting or expanding your family in the near future?", ["Yes", "No"])
-    if planning_family == "Yes":
+    planning_family_q = st.radio("Are you considering starting or expanding your family in the near future?", ["Yes", "No"])
+    if planning_family_q == "Yes":
         conception_plan = st.text_input("Have you thought about when you might want to start trying to conceive?")
         contraception_priority = st.text_area("What are your priorities when considering contraception?")
 
