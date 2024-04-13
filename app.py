@@ -39,7 +39,6 @@ def welcome_page():
 
 def collect_personal_info():
     # Personal Information
-    st.header("Personal Information")
     age = st.number_input("What is your age?", min_value=12, max_value=100, key="age")
     gender_identity = st.selectbox("What is your gender identity?", ["Male", "Female", "Non-binary", "Prefer not to say"], key="gender")
     zip_code = st.text_input("What is your zip code or city of residence?")
@@ -49,7 +48,6 @@ def collect_personal_info():
 
 def collect_health_status():
     # Health Status
-    st.header("Health Status")
     general_health = st.selectbox("How would you describe your overall health?", ["Excellent", "Good", "Fair", "Poor"], key="health")
     currentl_medications = st.radio("Are you currently taking any medications?", ["Yes", "No"], key="currentl_medications")
     if currentl_medications == "Yes":
@@ -65,7 +63,6 @@ def collect_health_status():
 
 def collect_reproductive_history():
     # Reproductive History
-    st.header("Reproductive History")
     current_contraception = st.radio("Are you currently using any form of contraception?", ["Yes", "No"])
     if current_contraception == "Yes":
         current_contraception = st.text_area("Types of contraception being used")
@@ -81,7 +78,6 @@ def collect_reproductive_history():
 
 def collect_insurance_info():
     # Insurance Information
-    st.header("Insurance Information")
     insurance_provider = st.radio("Do you have health insurance?", ["Yes", "No"])
     if insurance_provider == "Yes":
         insurance_provider = st.text_input("Which provider?")
@@ -91,7 +87,6 @@ def collect_insurance_info():
 
 def collect_future_planning():
     # Future Planning
-    st.header("Future Planning")
     planning_family = st.radio("Are you considering starting or expanding your family in the near future?", ["Yes", "No"])
     if planning_family == "Yes":
         conception_plan = st.text_input("Have you thought about when you might want to start trying to conceive?")
@@ -100,21 +95,13 @@ def collect_future_planning():
     navigate()
 
 def preferences_concerns():
-    st.write("Here's a summary of your inputs:")
-    st.json(st.session_state)
-    # Data visualization could be added here
-    if st.button("Finish"):
-        st.session_state.page_number = 0  # Reset to start
-
     # Preferences and Concerns
-    st.header("Preferences and Concerns")
     fertility_concerns = st.text_area("What concerns do you have regarding contraceptive methods affecting your fertility?")
     cultural_concerns = st.text_area("Are there cultural or ethical considerations that we should take into account when providing you with health information?")
     learning_preferences = st.selectbox("What are your preferences for learning about health topics?", ["Reading articles", "Watching videos", "Speaking to a professional", "Other"])
     consultation_interest = st.radio("Would you be interested in a follow-up consultation with a healthcare provider?", ["Yes", "No"])
 def privacy_concent():
     # Feedback and Consent
-    st.header("Privacy and Consent")
     consent = st.radio("Do you consent to have this information used to tailor health advice specifically for you?", ["Yes", "No"])
     if st.button("Finish"):
         st.success("Profile Submitted Successfully!")
