@@ -3,7 +3,7 @@ import openai
 
 def create_openai_assistant_prompt(user_data, api_key):
 
-    openai.api_key = api_key
+    oepnai.api_key = api_key
     # Constructing a detailed prompt based on the comprehensive user data collected
     prompt = f"""
     User Profile:
@@ -72,7 +72,7 @@ def create_openai_assistant_prompt(user_data, api_key):
 def generate_response(user_data, api_key):
 
     prompt = create_openai_assistant_prompt(user_data, api_key)
-    response = openai.Completion.create(
+    response = oepnai.Completion.create(
         engine="davinci",
         prompt=prompt,
         max_tokens=500,  # Adjust based on the expected length of the response
