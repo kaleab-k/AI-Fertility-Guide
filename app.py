@@ -1,7 +1,6 @@
 import streamlit as st
 from questions import questionnaire
 from response import display_response
-from chat import chat
 
 def main():
     st.set_page_config(
