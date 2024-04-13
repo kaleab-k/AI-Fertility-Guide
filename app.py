@@ -49,14 +49,14 @@ def collect_personal_info():
 def collect_health_status():
     # Health Status
     general_health = st.selectbox("How would you describe your overall health?", ["Excellent", "Good", "Fair", "Poor"], key="health")
-    currentl_medications_q = st.radio("Are you currently taking any medications?", ["Yes", "No"])
-    if currentl_medications_q == "Yes":
+    currentl_medications = st.radio("Are you currently taking any medications?", ["Yes", "No"], key="currentl_medications")
+    if st.session_state.currentl_medications == "Yes":
         currentl_medications = st.text_area("Types of medications being used", key="medication_types")
-    allergies_q = st.radio("Do you have any known allergies or adverse reactions to medications?", ["Yes", "No"])
-    if allergies_q == "Yes":
+    allergies = st.radio("Do you have any known allergies or adverse reactions to medications?", ["Yes", "No"], key="allergies")
+    if st.session_state.allergies == "Yes":
         allergies = st.text_area("List of allergies")
-    known_conditions_q = st.radio("Do you have any known health conditions that affect your reproductive health?", ["Yes", "No"])
-    if known_conditions_q == "Yes":
+    known_conditions = st.radio("Do you have any known health conditions that affect your reproductive health?", ["Yes", "No"], key="known_conditions")
+    if st.session_state.known_conditions == "Yes":
         known_conditions = st.text_area("List health conditions")
 
     navigate()
