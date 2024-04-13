@@ -144,7 +144,7 @@ def questionnaire():
         st.session_state.page_number = 0  # Reset for reusability
 
 def navigate():
-    col1, _, _, col2 = st.columns(4)
+    col1, _, _,_, col2 = st.columns(5)
     if col1.button("Back"):
         if st.session_state.page_number > 0:
             st.session_state.page_number -= 1
