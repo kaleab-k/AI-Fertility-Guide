@@ -5,6 +5,10 @@ from questions import compile_user_data
 def display_response(user_data=None, openai_api_key=None):
     if user_data is None:
         user_data = compile_user_data()
+    
+    if not openai_api_key:
+        st.info("Please add your OpenAI API key to continue.")
+        st.stop()
 
     with st.sidebar:
         st.header("Feedback on Advice")
@@ -30,21 +34,17 @@ def display_response(user_data=None, openai_api_key=None):
     if "messages" not in st.session_state:
         st.session_state["messages"] = [{"role": "assistant", "content": "How can I further assist you?"}]
 
-    # for msg in st.session_state.messages:
-    #     st.chat_message(msg["role"]).write(msg["content"])
+    for msg in st.session_state.messages:
+        st.chat_message(msg["role"]).write(msg["content"])
 
-    # if prompt := st.chat_input():
-    #     # if not openai_api_key:
-    #     #     st.info("Please add your OpenAI API key to continue.")
-    #     #     st.stop()
-
-    #     # client = OpenAI(api_key=openai_api_key)
-    #     st.session_state.messages.append({"role": "user", "content": prompt})
-    #     st.chat_message("user").write(prompt)
-    #     response = client.chat.completions.create(model="gpt-3.5-turbo", messages=st.session_state.messages)
-    #     msg =  response.choices[0].message.content
-    #     st.session_state.messages.append({"role": "assistant", "content": msg})
-    #     st.chat_message("assistant").write(msg)
+    if prompt := st.chat_input():
+        # client = OpenAI(api_key=openai_api_key)
+        st.session_state.messages.append({"role": "user", "content": prompt})
+        st.chat_message("user").write(prompt)
+        response = client.chat.completions.create(model="gpt-3.5-turbo", messages=st.session_state.messages)
+        msg =  response.choices[0].message.content
+        st.session_state.messages.append({"role": "assistant", "content": msg})
+        st.chat_message("assistant").write(msg)
 
 def save_feedback(user_data, feedback):
     # Placeholder for saving feedback

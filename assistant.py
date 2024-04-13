@@ -77,7 +77,7 @@ def generate_response(user_data, api_key):
 
     prompt = create_openai_assistant_prompt(user_data)
 
-    response = client.chat.completions.create(model="gpt-3.5-turbo", messages=prompt)
+    response = client.chat.completions.create(model="gpt-3.5-turbo", messages=[{"role": "assistant", "content": prompt}])
 
     # response = oepnai.Completion.create(
     #     engine="davinci",
