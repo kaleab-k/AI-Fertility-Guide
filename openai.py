@@ -1,9 +1,9 @@
 
 import openai
 
-openai.api_key = 'api-key-here'
+def create_openai_assistant_prompt(user_data, api_key):
 
-def create_openai_assistant_prompt(user_data):
+    openai.api_key = api_key
     # Constructing a detailed prompt based on the comprehensive user data collected
     prompt = f"""
     User Profile:
@@ -69,9 +69,9 @@ def create_openai_assistant_prompt(user_data):
     return prompt
 
 
-def generate_response(user_data):
+def generate_response(user_data, api_key):
 
-    prompt = create_openai_assistant_prompt(user_data)
+    prompt = create_openai_assistant_prompt(user_data, api_key)
     response = openai.Completion.create(
         engine="davinci",
         prompt=prompt,

@@ -36,7 +36,7 @@ def main():
     elif st.session_state['current_page'] == 'questions':
         questionnaire()
     elif st.session_state['current_page'] == 'chat':
-        display_response()
+        display_response(openai_api_key=openai_api_key)
 
 def welcome_page():
     st.title("Welcome to EmpowerCare!")

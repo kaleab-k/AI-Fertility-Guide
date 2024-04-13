@@ -2,7 +2,7 @@ import streamlit as st
 from openai import generate_response
 from questions import compile_user_data
 
-def display_response(user_data=None):
+def display_response(user_data=None, openai_api_key=None):
     if user_data is None:
         user_data = compile_user_data()
 
@@ -23,7 +23,7 @@ def display_response(user_data=None):
     st.title("💬 Your Personalized Advice")
     st.caption("🚀 EmpowerCare Chatbot powered by OpenAI LLM")
     # Assuming generate_advice is a function that sends data to OpenAI and gets a response
-    # response = generate_response(user_data)
+    response = generate_response(user_data, openai_api_key)
     # st.write(response)
     st.chat_message("assistant").write(user_data)
 
