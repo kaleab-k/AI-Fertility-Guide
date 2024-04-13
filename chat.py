@@ -5,7 +5,7 @@ def chat():
     
 
     st.title("💬 Your Personalized Advice")
-    st.caption("🚀 Keep chatting with EmpowerCare AI Chatbot")
+    st.caption("🚀 EmpowerCare Chatbot powered by OpenAI LLM")
     if "messages" not in st.session_state:
         st.session_state["messages"] = [{"role": "assistant", "content": "How can I help you?"}]
 
