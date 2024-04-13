@@ -1,6 +1,7 @@
 import streamlit as st
 from questions import questionnaire
 from response import display_response
+from chat import chat
 
 def main():
     st.set_page_config(
@@ -21,7 +22,7 @@ def main():
     elif app_mode == "Fill Questionnaire":
         st.session_state.current_page = 'questions'
     elif app_mode == "Chat":
-        st.session_state.current_page = 'response'
+        st.session_state.current_page = 'chat'
     
     if 'current_page' not in st.session_state:
         st.session_state['current_page'] = 'welcome'  # Default page
@@ -30,6 +31,8 @@ def main():
         welcome_page()
     elif st.session_state['current_page'] == 'questions':
         questionnaire()
+    elif st.session_state['chat'] == 'chat':
+        chat()
     elif st.session_state['current_page'] == 'response':
         display_response()
 
