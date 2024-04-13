@@ -43,6 +43,7 @@ def welcome_page():
 
     def go_to_questions():
         st.session_state.current_page = 'questions'
+        main()
         
     st.button("Get Started", on_click=go_to_questions)
 
