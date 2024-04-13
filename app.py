@@ -37,6 +37,9 @@ def main():
     elif st.session_state['current_page'] == 'chat':
         display_response(openai_api_key=openai_api_key)
 
+def go_to_questions():
+    st.session_state['current_page'] = 'questions'
+
 def welcome_page():
     st.title("Welcome to EmpowerCare!")
 
@@ -49,9 +52,6 @@ def welcome_page():
     st.header("Get Started")
     st.success("Ready to explore your personalized reproductive health options? Click 'Get Started' to begin a journey tailored just for you. You’ll answer some simple questions to help us understand your needs and preferences. From there, we’ll provide you with customized advice and resources to make informed decisions about your health. Let’s take this step together—your empowered path starts now.", icon="🏃")
 
-    def go_to_questions():
-        st.session_state['current_page'] = 'questions'
-        
     st.button("Get Started", on_click=go_to_questions)
         
 
