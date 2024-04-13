@@ -43,7 +43,7 @@ def welcome_page():
 
     def go_to_questions():
         st.session_state.current_page = 'questions'
-        main()
+        st.experimental_rerun()
         
     st.button("Get Started", on_click=go_to_questions)
 
@@ -139,7 +139,7 @@ def questionnaire():
         page_title, page_function = questionnaire_pages[st.session_state.page_number]
         st.progress((st.session_state.page_number + 1) / len(questionnaire_pages))
         st.header(page_title)
-        st.write(f'Page {st.session_state.page_number+1} of {len(questionnaire_pages)}')
+        # st.write(f'Page {st.session_state.page_number+1} of {len(questionnaire_pages)}')
         page_function()
     else:
         st.session_state.page_number = 0  # Reset for reusability
