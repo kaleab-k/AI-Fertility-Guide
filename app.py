@@ -50,8 +50,7 @@ def welcome_page():
         
         
     if st.button("Get Started"):
-        st.session_state.current_page = 'questions'
-        st.rerun()
+        st.session_state['current_page'] = 'questions'
 
 if __name__ == "__main__":
     main()
