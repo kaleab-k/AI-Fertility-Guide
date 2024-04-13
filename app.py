@@ -101,7 +101,7 @@ def preferences_concerns():
     consultation_interest = st.radio("Would you be interested in a follow-up consultation with a healthcare provider?", ["Yes", "No"])
     
     navigate()
-    
+
 def privacy_concent():
     # Feedback and Consent
     consent = st.radio("Do you consent to have this information used to tailor health advice specifically for you?", ["Yes", "No"])
@@ -128,6 +128,7 @@ def questionnaire():
         page_title, page_function = questionnaire_pages[st.session_state.page_number]
         st.progress((st.session_state.page_number + 1) / len(questionnaire_pages))
         st.header(page_title)
+        st.write(f'Page {st.session_state.page_number} of {len(questionnaire_pages)}')
         page_function()
     else:
         st.session_state.page_number = 0  # Reset for reusability
