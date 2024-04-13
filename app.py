@@ -41,8 +41,10 @@ def welcome_page():
     st.header("Get Started")
     st.write("Ready to explore your personalized reproductive health options? Click 'Get Started' to begin a journey tailored just for you. You’ll answer some simple questions to help us understand your needs and preferences. From there, we’ll provide you with customized advice and resources to make informed decisions about your health. Let’s take this step together—your empowered path starts now.")
 
-    if st.button("Get Started"):
+    def go_to_questions():
         st.session_state.current_page = 'questions'
+        
+    st.button("Get Started", on_click=go_to_questions):
 
 
 def collect_personal_info():
@@ -142,14 +144,17 @@ def questionnaire():
         st.session_state.page_number = 0  # Reset for reusability
 
 def navigate():
-    col1, _, _,_,_, col2 = st.columns(6)
-    if col1.button("Back"):
+    def prev():
         if st.session_state.page_number > 0:
             st.session_state.page_number -= 1
-    if col2.button("Next"):
+    def next():
         if st.session_state.page_number < len(questionnaire_pages) - 1:
             st.session_state.page_number += 1
 
+    col1, _, _,_,_, col2 = st.columns(6)
+
+    col1.button("Back", on_click=prev)
+    col2.button("Next", on_click=next)
 
 
 if __name__ == "__main__":
