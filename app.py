@@ -1,28 +1,23 @@
 import streamlit as st
 
 def main():
-    
     st.set_page_config(
         page_title="EmpowerCare",
-        page_icon="https://www.svgrepo.com/show/287894/care.svg",
-        menu_items={"About": "Welcome to EmpowerCare, a revolutionary AI-assisted reproductive health resource center designed to empower you with personalized, comprehensive information that respects and responds to your unique reproductive health needs.", "Get help": None, "Report a Bug": None}
+        page_icon="https://www.svgrepo.com/show/137210/health-care.svg",
+        menu_items={
+            "About": "Welcome to EmpowerCare, a revolutionary AI-assisted reproductive health resource center designed to empower you with personalized, comprehensive information that respects and responds to your unique reproductive health needs.",
+            "Get help": None,
+            "Report a Bug": None
+        }
     )
 
-    # Sidebar for navigation
     st.sidebar.title("Navigation")
-    if st.sidebar.button("Welcome"):
-        st.session_state['current_page'] = 'welcome'
-    if st.sidebar.button("Questions"):
-        st.session_state['current_page'] = 'questions'
+    app_mode = st.sidebar.selectbox("Choose the section", ["Welcome", "Fill Questionnaire"])
 
-    # Display pages based on sidebar navigation choices
-    if 'current_page' not in st.session_state:
-        st.session_state['current_page'] = 'welcome'  # Default page
-
-    if st.session_state['current_page'] == 'welcome':
+    if app_mode == "Welcome":
         welcome_page()
-    elif st.session_state['current_page'] == 'questions':
-        questions_page()
+    elif app_mode == "Fill Questionnaire":
+        questionnaire()
 
 
 def welcome_page():
@@ -89,5 +84,89 @@ def questions_page():
     if st.button("Submit"):
         st.success("Profile Submitted Successfully!")
 
+
+def questionnaire():
+    pages = [
+        ("Personal Information", collect_personal_info),
+        ("Health Status", collect_health_status),
+        ("Reproductive History", collect_reproductive_history),
+        ("Insurance Information", collect_insurance_info),
+        ("Future Planning", collect_future_planning),
+        ("Summary and Visualization", show_summary)
+    ]
+
+    if 'page_number' not in st.session_state:
+        st.session_state.page_number = 0
+
+    if st.session_state.page_number < len(pages):
+        page_title, page_function = pages[st.session_state.page_number]
+        st.progress((st.session_state.page_number + 1) / len(pages))
+        st.header(page_title)
+        page_function()
+    else:
+        st.session_state.page_number = 0  # Reset for reusability
+
+def navigate():
+    col1, col2 = st.columns(2)
+    if col1.button("Back"):
+        if st.session_state.page_number > 0:
+            st.session_state.page_number -= 1
+    if col2.button("Next"):
+        if st.session_state.page_number < len(pages) - 1:
+            st.session_state.page_number += 1
+
+def collect_personal_info():
+    # Personal Information
+    st.header("Personal Information")
+    age = st.number_input("What is your age?", min_value=12, max_value=100, key="age")
+    gender_identity = st.selectbox("What is your gender identity?", ["Male", "Female", "Non-binary", "Prefer not to say"], key="gender")
+    zip_code = st.text_input("What is your zip code or city of residence?")
+    employment_status = st.selectbox("What is your current employment status?", ["Employed", "Unemployed", "Student", "Retired"])
+
+    navigate()
+
+def collect_health_status():
+    # Health Status
+    st.header("Health Status")
+    general_health = st.selectbox("How would you describe your overall health?", ["Excellent", "Good", "Fair", "Poor"], key="health")
+    currentl_medications = st.text_area("Are you currently taking any medications? If yes, please list them.")
+    currentl_medications = st.radio("Are you currently taking any medications?", ["Yes", "No"], key="currentl_medications")
+    if currentl_medications == "Yes":
+        currentl_medications = st.text_area("Types of medications being used", key="medication_types")
+    allergies = st.radio("Do you have any known allergies or adverse reactions to medications?", ["Yes", "No"])
+    if allergies == "Yes":
+        allergies = st.text_area("List of allergies")
+    known_conditions = st.radio("Do you have any known health conditions that affect your reproductive health?", ["Yes", "No"])
+    if known_conditions == "Yes":
+        known_conditions = st.text_area("List health conditions")
+
+    navigate()
+
+def collect_reproductive_history():
+    st.radio("Using contraception?", ["Yes", "No"], key="current_contraception")
+    if st.session_state.current_contraception == "Yes":
+        st.text_area("Types of contraception used", key="contraception_types")
+    navigate()
+
+def collect_insurance_info():
+    st.radio("Have health insurance?", ["Yes", "No"], key="insurance")
+    if st.session_state.insurance == "Yes":
+        st.text_input("Insurance provider", key="provider")
+    navigate()
+
+def collect_future_planning():
+    planning_family = st.radio("Considering starting or expanding your family soon?", ["Yes", "No"], key="planning_family")
+    if planning_family == "Yes":
+        st.text_input("When to start trying to conceive?", key="conception_time")
+    navigate()
+
+def show_summary():
+    st.write("Here's a summary of your inputs:")
+    st.json(st.session_state)
+    # Data visualization could be added here
+    if st.button("Finish"):
+        st.session_state.page_number = 0  # Reset to start
+
 if __name__ == "__main__":
     main()
+
