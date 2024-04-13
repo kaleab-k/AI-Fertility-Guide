@@ -84,9 +84,7 @@ def questions_page():
     if st.button("Submit"):
         st.success("Profile Submitted Successfully!")
 
-
-def questionnaire():
-    pages = [
+questionnaire_pages = [
         ("Personal Information", collect_personal_info),
         ("Health Status", collect_health_status),
         ("Reproductive History", collect_reproductive_history),
@@ -94,13 +92,15 @@ def questionnaire():
         ("Future Planning", collect_future_planning),
         ("Summary and Visualization", show_summary)
     ]
+    
+def questionnaire():
 
     if 'page_number' not in st.session_state:
         st.session_state.page_number = 0
 
-    if st.session_state.page_number < len(pages):
-        page_title, page_function = pages[st.session_state.page_number]
-        st.progress((st.session_state.page_number + 1) / len(pages))
+    if st.session_state.page_number < len(questionnaire_pages):
+        page_title, page_function = questionnaire_pages[st.session_state.page_number]
+        st.progress((st.session_state.page_number + 1) / len(questionnaire_pages))
         st.header(page_title)
         page_function()
     else:
@@ -112,7 +112,7 @@ def navigate():
         if st.session_state.page_number > 0:
             st.session_state.page_number -= 1
     if col2.button("Next"):
-        if st.session_state.page_number < len(pages) - 1:
+        if st.session_state.page_number < len(questionnaire_pages) - 1:
             st.session_state.page_number += 1
 
 def collect_personal_info():
