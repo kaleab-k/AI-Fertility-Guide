@@ -1,6 +1,35 @@
 import streamlit as st
 
 def main():
+    
+    st.set_page_config(
+        page_title="EmpowerCare",
+        page_icon="https://www.svgrepo.com/show/137210/health-care.svg",
+        menu_items={"About": "Welcome to EmpowerCare, a revolutionary AI-assisted reproductive health resource center designed to empower you with personalized, comprehensive information that respects and responds to your unique reproductive health needs.", "Get help": None, "Report a Bug": None}
+    )
+
+    if 'start_questions' not in st.session_state:
+        st.session_state.start_questions = False
+
+    if not st.session_state.start_questions:
+        welcome_page()
+    else:
+        questions_page()
+
+def welcome_page():
+    st.header("Greetings")
+    st.write("Welcome to EmpowerCare! We're excited to guide you through your personalized reproductive health journey. Our platform is designed to offer you tailored advice, clear information, and support that respects your unique needs and privacy. Get started today and take the first step towards informed and empowered health decisions. Thank you for trusting EmpowerCare—where your health and privacy come first.")
+
+    st.header("Privacy")
+    st.write("At EmpowerCare, your privacy is our top priority. To protect your personal information, our system only uses state-of-the-art security measures and adheres to the strictest data protection standards. We employ advanced encryption technologies to secure all data transmissions and store information in compliance with leading privacy laws, including HIPAA. Our platform is designed to ensure that your personal details are accessed only by authorized personnel and only for the purpose of enhancing your experience and providing the services you need.")
+
+    st.header("Get Started")
+    st.write("Ready to explore your personalized reproductive health options? Click 'Get Started' to begin a journey tailored just for you. You’ll answer some simple questions to help us understand your needs and preferences. From there, we’ll provide you with customized advice and resources to make informed decisions about your health. Let’s take this step together—your empowered path starts now.")
+
+    if st.button("Get Started"):
+        st.session_state.start_questions = True
+
+def questions_page():
     st.title("Reproductive Health Profile")
 
     # Personal Information
