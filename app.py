@@ -35,55 +35,6 @@ def welcome_page():
     if st.button("Get Started"):
         st.session_state.current_page = 'questions'
 
-def questions_page():
-    st.title("Reproductive Health Profile")
-
-    # Personal Information
-    st.header("Personal Information")
-    age = st.number_input("What is your age?", min_value=12, max_value=100)
-    gender_identity = st.selectbox("What is your gender identity?", ["Male", "Female", "Non-binary", "Prefer not to say"])
-    zip_code = st.text_input("What is your zip code or city of residence?")
-    employment_status = st.selectbox("What is your current employment status?", ["Employed", "Unemployed", "Student", "Retired"])
-
-    # Health Status
-    st.header("Health Status")
-    general_health = st.selectbox("How would you describe your overall health?", ["Excellent", "Good", "Fair", "Poor"])
-    currentl_medications = st.text_area("Are you currently taking any medications? If yes, please list them.")
-    allergies = st.text_area("Do you have any known allergies or adverse reactions to medications?")
-    known_conditions = st.text_area("Do you have any known health conditions that affect your reproductive health?")
-
-    # Reproductive History
-    st.header("Reproductive History")
-    current_contraception = st.radio("Are you currently using any form of contraception?", ["Yes", "No"])
-    past_contraception = st.text_area("Have you used any contraceptive methods in the past?")
-    family_history = st.text_area("Have there been any fertility or pregnancy-related issues in your family history?")
-
-    # Insurance Information
-    st.header("Insurance Information")
-    has_insurance = st.radio("Do you have health insurance?", ["Yes", "No"])
-    insurance_provider = st.text_input("Which provider?")
-    need_assistance = st.radio("Do you need assistance finding clinics that accept your insurance?", ["Yes", "No"])
-
-    # Future Planning
-    st.header("Future Planning")
-    planning_family = st.radio("Are you considering starting or expanding your family in the near future?", ["Yes", "No"])
-    conception_plan = st.text_input("If yes, have you thought about when you might want to start trying to conceive?")
-    contraception_priority = st.text_area("What are your priorities when considering contraception?")
-
-    # Preferences and Concerns
-    st.header("Preferences and Concerns")
-    fertility_concerns = st.text_area("What concerns do you have regarding contraceptive methods affecting your fertility?")
-    cultural_concerns = st.text_area("Are there cultural or ethical considerations that we should take into account when providing you with health information?")
-    learning_preferences = st.selectbox("What are your preferences for learning about health topics?", ["Reading articles", "Watching videos", "Speaking to a professional", "Other"])
-    consultation_interest = st.radio("Would you be interested in a follow-up consultation with a healthcare provider?", ["Yes", "No"])
-
-    # Feedback and Consent
-    st.header("Privacy and Consent")
-    consent = st.radio("Do you consent to have this information used to tailor health advice specifically for you?", ["Yes", "No"])
-
-    if st.button("Submit"):
-        st.success("Profile Submitted Successfully!")
-
 
 
 def collect_personal_info():
@@ -100,7 +51,6 @@ def collect_health_status():
     # Health Status
     st.header("Health Status")
     general_health = st.selectbox("How would you describe your overall health?", ["Excellent", "Good", "Fair", "Poor"], key="health")
-    currentl_medications = st.text_area("Are you currently taking any medications? If yes, please list them.")
     currentl_medications = st.radio("Are you currently taking any medications?", ["Yes", "No"], key="currentl_medications")
     if currentl_medications == "Yes":
         currentl_medications = st.text_area("Types of medications being used", key="medication_types")
@@ -114,29 +64,61 @@ def collect_health_status():
     navigate()
 
 def collect_reproductive_history():
-    st.radio("Using contraception?", ["Yes", "No"], key="current_contraception")
-    if st.session_state.current_contraception == "Yes":
-        st.text_area("Types of contraception used", key="contraception_types")
+    # Reproductive History
+    st.header("Reproductive History")
+    current_contraception = st.radio("Are you currently using any form of contraception?", ["Yes", "No"])
+    if current_contraception == "Yes":
+        current_contraception = st.text_area("Types of contraception being used")
+    past_contraception = st.radio("Have you used any contraceptive methods in the past?", ["Yes", "No"])
+    if past_contraception == "Yes":
+        past_contraception = st.text_area("Types of contraception used")
+    past_contraception = st.text_area("Have you used any contraceptive methods in the past?")
+    family_history = st.radio("Have there been any fertility or pregnancy-related issues in your family history?", ["Yes", "No"])
+    if family_history == "Yes":
+        family_history = st.text_area("Details")
+
     navigate()
 
 def collect_insurance_info():
-    st.radio("Have health insurance?", ["Yes", "No"], key="insurance")
-    if st.session_state.insurance == "Yes":
-        st.text_input("Insurance provider", key="provider")
+    # Insurance Information
+    st.header("Insurance Information")
+    insurance_provider = st.radio("Do you have health insurance?", ["Yes", "No"])
+    if insurance_provider == "Yes":
+        insurance_provider = st.text_input("Which provider?")
+    need_assistance = st.radio("Do you need assistance finding clinics that accept your insurance?", ["Yes", "No"])
+
     navigate()
 
 def collect_future_planning():
-    planning_family = st.radio("Considering starting or expanding your family soon?", ["Yes", "No"], key="planning_family")
+    # Future Planning
+    st.header("Future Planning")
+    planning_family = st.radio("Are you considering starting or expanding your family in the near future?", ["Yes", "No"])
     if planning_family == "Yes":
-        st.text_input("When to start trying to conceive?", key="conception_time")
+        conception_plan = st.text_input("Have you thought about when you might want to start trying to conceive?")
+        contraception_priority = st.text_area("What are your priorities when considering contraception?")
+
     navigate()
 
-def show_summary():
+def preferences_concerns():
     st.write("Here's a summary of your inputs:")
     st.json(st.session_state)
     # Data visualization could be added here
     if st.button("Finish"):
         st.session_state.page_number = 0  # Reset to start
+
+    # Preferences and Concerns
+    st.header("Preferences and Concerns")
+    fertility_concerns = st.text_area("What concerns do you have regarding contraceptive methods affecting your fertility?")
+    cultural_concerns = st.text_area("Are there cultural or ethical considerations that we should take into account when providing you with health information?")
+    learning_preferences = st.selectbox("What are your preferences for learning about health topics?", ["Reading articles", "Watching videos", "Speaking to a professional", "Other"])
+    consultation_interest = st.radio("Would you be interested in a follow-up consultation with a healthcare provider?", ["Yes", "No"])
+def privacy_concent():
+    # Feedback and Consent
+    st.header("Privacy and Consent")
+    consent = st.radio("Do you consent to have this information used to tailor health advice specifically for you?", ["Yes", "No"])
+    if st.button("Finish"):
+        st.success("Profile Submitted Successfully!")
+        st.session_state.current_page = 'chat'
 
 questionnaire_pages = [
         ("Personal Information", collect_personal_info),
@@ -144,7 +126,8 @@ questionnaire_pages = [
         ("Reproductive History", collect_reproductive_history),
         ("Insurance Information", collect_insurance_info),
         ("Future Planning", collect_future_planning),
-        ("Summary and Visualization", show_summary)
+        ("Preferences", preferences_concerns),
+        ("Privacy", privacy_concent)
     ]
     
 def questionnaire():
@@ -161,7 +144,7 @@ def questionnaire():
         st.session_state.page_number = 0  # Reset for reusability
 
 def navigate():
-    col1, col2 = st.columns(2)
+    col1, col2 = st.columns(4)
     if col1.button("Back"):
         if st.session_state.page_number > 0:
             st.session_state.page_number -= 1
