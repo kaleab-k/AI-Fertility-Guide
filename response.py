@@ -1,7 +1,10 @@
 import streamlit as st
 from openai import generate_response
+from questions import compile_user_data
 
 def display_response(user_data=None):
+    if user_data is None:
+        user_data = compile_user_data()
 
     with st.sidebar:
         st.header("Feedback on Advice")
@@ -20,9 +23,9 @@ def display_response(user_data=None):
     st.title("💬 Your Personalized Advice")
     st.caption("🚀 EmpowerCare Chatbot powered by OpenAI LLM")
     # Assuming generate_advice is a function that sends data to OpenAI and gets a response
-    response = "This is a custom response..." #generate_response(user_data)
+    # response = generate_response(user_data)
     # st.write(response)
-    st.chat_message("assistant").write(response)
+    st.chat_message("assistant").write(user_data)
 
     if "messages" not in st.session_state:
         st.session_state["messages"] = [{"role": "assistant", "content": "How can I further assist you?"}]

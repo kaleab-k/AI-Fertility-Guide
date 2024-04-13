@@ -37,8 +37,6 @@ def main():
         questionnaire()
     elif st.session_state['current_page'] == 'chat':
         display_response()
-    elif st.session_state['current_page'] == 'response':
-        display_response()
 
 def welcome_page():
     st.title("Welcome to EmpowerCare!")
