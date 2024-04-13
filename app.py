@@ -33,8 +33,8 @@ def welcome_page():
     st.write("Ready to explore your personalized reproductive health options? Click 'Get Started' to begin a journey tailored just for you. You’ll answer some simple questions to help us understand your needs and preferences. From there, we’ll provide you with customized advice and resources to make informed decisions about your health. Let’s take this step together—your empowered path starts now.")
 
     if st.button("Get Started"):
-        st.session_state.current_page = 'questions'
-
+        # st.session_state.current_page = 'questions'
+        questionnaire()
 
 
 def collect_personal_info():
@@ -128,7 +128,7 @@ def questionnaire():
         page_title, page_function = questionnaire_pages[st.session_state.page_number]
         st.progress((st.session_state.page_number + 1) / len(questionnaire_pages))
         st.header(page_title)
-        st.write(f'Page {st.session_state.page_number} of {len(questionnaire_pages)}')
+        st.write(f'Page {st.session_state.page_number+1} of {len(questionnaire_pages)}')
         page_function()
     else:
         st.session_state.page_number = 0  # Reset for reusability
