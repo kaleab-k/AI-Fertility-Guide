@@ -14,13 +14,13 @@ def main():
     )
 
     st.sidebar.title("Navigation")
-    app_mode = st.sidebar.selectbox("Choose the section", ["Welcome", "Fill Questionnaire"])
+    app_mode = st.sidebar.selectbox("Choose the section", ["Welcome", "Fill Questionnaire", "Chat"])
 
     if app_mode == "Welcome":
         st.session_state.current_page = 'welcome'
     elif app_mode == "Fill Questionnaire":
         st.session_state.current_page = 'questions'
-    elif app_mode == "Response":
+    elif app_mode == "Chat":
         st.session_state.current_page = 'response'
     
     if 'current_page' not in st.session_state:
