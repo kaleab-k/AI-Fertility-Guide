@@ -44,7 +44,7 @@ def welcome_page():
     def go_to_questions():
         st.session_state.current_page = 'questions'
         
-    st.button("Get Started", on_click=go_to_questions):
+    st.button("Get Started", on_click=go_to_questions)
 
 
 def collect_personal_info():
