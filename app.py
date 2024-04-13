@@ -13,13 +13,14 @@ def main():
     # Health Status
     st.header("Health Status")
     general_health = st.selectbox("How would you describe your overall health?", ["Excellent", "Good", "Fair", "Poor"])
+    currentl_medications = st.text_area("Are you currently taking any medications? If yes, please list them.")
+    allergies = st.text_area("Do you have any known allergies or adverse reactions to medications?")
     known_conditions = st.text_area("Do you have any known health conditions that affect your reproductive health?")
 
     # Reproductive History
     st.header("Reproductive History")
     current_contraception = st.radio("Are you currently using any form of contraception?", ["Yes", "No"])
     past_contraception = st.text_area("Have you used any contraceptive methods in the past?")
-    allergies = st.text_area("Do you have any known allergies or adverse reactions to medications?")
     family_history = st.text_area("Have there been any fertility or pregnancy-related issues in your family history?")
 
     # Insurance Information
@@ -37,12 +38,13 @@ def main():
     # Preferences and Concerns
     st.header("Preferences and Concerns")
     fertility_concerns = st.text_area("What concerns do you have regarding contraceptive methods affecting your fertility?")
+    cultural_concerns = st.text_area("Are there cultural or ethical considerations that we should take into account when providing you with health information?")
     learning_preferences = st.selectbox("What are your preferences for learning about health topics?", ["Reading articles", "Watching videos", "Speaking to a professional", "Other"])
     consultation_interest = st.radio("Would you be interested in a follow-up consultation with a healthcare provider?", ["Yes", "No"])
 
     # Feedback and Consent
-    st.header("Feedback and Consent")
-    consent = st.radio("Do you consent to us using your anonymized data to improve our services?", ["Yes", "No"])
+    st.header("Privacy and Consent")
+    consent = st.radio("Do you consent to have this information used to tailor health advice specifically for you?", ["Yes", "No"])
 
     if st.button("Submit"):
         st.success("Profile Submitted Successfully!")
