@@ -31,7 +31,7 @@ def main():
         welcome_page()
     elif st.session_state['current_page'] == 'questions':
         questionnaire()
-    elif st.session_state['chat'] == 'chat':
+    elif st.session_state['current_page'] == 'chat':
         chat()
     elif st.session_state['current_page'] == 'response':
         display_response()
