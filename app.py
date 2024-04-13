@@ -84,36 +84,7 @@ def questions_page():
     if st.button("Submit"):
         st.success("Profile Submitted Successfully!")
 
-questionnaire_pages = [
-        ("Personal Information", collect_personal_info),
-        ("Health Status", collect_health_status),
-        ("Reproductive History", collect_reproductive_history),
-        ("Insurance Information", collect_insurance_info),
-        ("Future Planning", collect_future_planning),
-        ("Summary and Visualization", show_summary)
-    ]
-    
-def questionnaire():
 
-    if 'page_number' not in st.session_state:
-        st.session_state.page_number = 0
-
-    if st.session_state.page_number < len(questionnaire_pages):
-        page_title, page_function = questionnaire_pages[st.session_state.page_number]
-        st.progress((st.session_state.page_number + 1) / len(questionnaire_pages))
-        st.header(page_title)
-        page_function()
-    else:
-        st.session_state.page_number = 0  # Reset for reusability
-
-def navigate():
-    col1, col2 = st.columns(2)
-    if col1.button("Back"):
-        if st.session_state.page_number > 0:
-            st.session_state.page_number -= 1
-    if col2.button("Next"):
-        if st.session_state.page_number < len(questionnaire_pages) - 1:
-            st.session_state.page_number += 1
 
 def collect_personal_info():
     # Personal Information
@@ -166,6 +137,39 @@ def show_summary():
     # Data visualization could be added here
     if st.button("Finish"):
         st.session_state.page_number = 0  # Reset to start
+
+questionnaire_pages = [
+        ("Personal Information", collect_personal_info),
+        ("Health Status", collect_health_status),
+        ("Reproductive History", collect_reproductive_history),
+        ("Insurance Information", collect_insurance_info),
+        ("Future Planning", collect_future_planning),
+        ("Summary and Visualization", show_summary)
+    ]
+    
+def questionnaire():
+
+    if 'page_number' not in st.session_state:
+        st.session_state.page_number = 0
+
+    if st.session_state.page_number < len(questionnaire_pages):
+        page_title, page_function = questionnaire_pages[st.session_state.page_number]
+        st.progress((st.session_state.page_number + 1) / len(questionnaire_pages))
+        st.header(page_title)
+        page_function()
+    else:
+        st.session_state.page_number = 0  # Reset for reusability
+
+def navigate():
+    col1, col2 = st.columns(2)
+    if col1.button("Back"):
+        if st.session_state.page_number > 0:
+            st.session_state.page_number -= 1
+    if col2.button("Next"):
+        if st.session_state.page_number < len(questionnaire_pages) - 1:
+            st.session_state.page_number += 1
+
+
 
 if __name__ == "__main__":
     main()
