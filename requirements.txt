@@ -4,3 +4,4 @@ streamlit-extras
 streamlit-card
 streamlit-audiorec
 pandas
+pydeck
