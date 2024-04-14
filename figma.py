@@ -33,6 +33,7 @@ def figa_profile():
         return card(
             title=title,
             text=text,
+            image=None,
             # image="http://placekitten.com/300/250",
             styles={ "card": {
                     "width": "100%",
