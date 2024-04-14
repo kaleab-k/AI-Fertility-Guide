@@ -4,6 +4,7 @@ from st_audiorec import st_audiorec
 from assistant import PetalAssitant
 import base64
 import datetime
+from questions import navigate
 
 def create_card(title, text, another_text, is_active=False):
     return card(
@@ -110,11 +111,13 @@ def figma_profile(openai_api_key):
         return file_name
     
     if wav_audio_data is not None:
-        st.audio(wav_audio_data, format='audio/wav')
+        # st.audio(wav_audio_data, format='audio/wav')
         file_name = save_audio_file(wav_audio_data, "mp3")
 
         assistant = assistant = PetalAssitant(openai_api_key)
         transcription = assistant.transcribe(file_name)
         
         st.text_area("Feel free to edit the transcription: ", value=transcription)
+
+    navigate()
 
