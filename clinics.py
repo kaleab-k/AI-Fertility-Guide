@@ -15,7 +15,7 @@ def clinics():
 
     response = assistant.get_clinics(zip_code)
 
-    response = '''{ 
+    response ={ 
                     "clinics": [
                         {
                             "name": "Dr. Michael Dimattina, MD",
@@ -35,11 +35,12 @@ def clinics():
                             "lon": -77.04549237325074,
                             "services_offered": ["Reproductive Medicine"],
                         }
-                    ]}
-                '''
+                    ]
+                }
+                
     st.write(response)
 
-    res = json.loads(response)
+    res = response #json.loads(response)
 
     # Convert dictionary to pandas DataFrame
     clinics_df = pd.DataFrame(res['clinics'])
