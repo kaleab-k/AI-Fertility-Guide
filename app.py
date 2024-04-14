@@ -2,6 +2,7 @@ import streamlit as st
 from questions import questionnaire
 from response import display_response
 from figma import figma_welcome, figma_profile
+from clinics import clinics
 
 app_mode = "Welcome"
 
@@ -34,9 +35,8 @@ def main():
         st.markdown("## Navigation")
         st.button("Home", on_click=lambda: setattr(st.session_state, 'current_page', 'welcome'))
         st.button("Profile", on_click=lambda: setattr(st.session_state, 'current_page', 'questions'))
-        st.button("Get Care", on_click=lambda: setattr(st.session_state, 'current_page', 'chat'))
-        st.button("Privacy", on_click=lambda: setattr(st.session_state, 'current_page', 'figma'))
-        st.button("Partners", on_click=lambda: setattr(st.session_state, 'current_page', 'partners'))
+        st.button("Personalized Advice", on_click=lambda: setattr(st.session_state, 'current_page', 'chat'))
+        st.button("Clinics", on_click=lambda: setattr(st.session_state, 'current_page', 'clinics'))
         st.button("Help", on_click=lambda: setattr(st.session_state, 'current_page', 'help'))
 
         openai_api_key = st.text_input("OpenAI API Key", key="chatbot_api_key", type="password")
@@ -64,8 +64,8 @@ def main():
         questionnaire()
     elif st.session_state['current_page'] == 'chat':
         display_response(openai_api_key=openai_api_key)
-    elif st.session_state['current_page'] == 'figma':
-        figma_profile(openai_api_key=openai_api_key)
+    elif st.session_state['current_page'] == 'clinics':
+        clinics()
 
 def welcome_page():
     st.title("Welcome to EmpowerCare!")

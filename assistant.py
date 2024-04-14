@@ -92,6 +92,12 @@ class PetalAssitant:
         response = self.client.chat.completions.create(model="gpt-4-turbo", messages=messages)
 
         return response.choices[0].message.content
+    
+    def get_clinics(self, zip_code):
+        prompt = f"Provide longitude and latitude of local clinics near to the zipcode of {zip_code} that accept the user's insurance and offer required services in python dictionary format only. No other descriptions."
+        response = self.client.chat.completions.create(model="gpt-4-turbo", messages=[{"role": "assistant", "content": prompt}])
+
+        return response.choices[0].message.content
 
     def text_to_speech(self, text, voice):
         speech_file_path = Path("audio.mp3")
