@@ -38,7 +38,7 @@ def clinics():
                     ]
                 }
                 
-    st.write(response)
+    # st.write(response)
 
     res = response #json.loads(response)
 
