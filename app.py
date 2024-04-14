@@ -97,7 +97,7 @@ def welcome_page():
                         "color": "#777"
                     },
                     "title": {
-                        "color": "#444",
+                        "color": "#555",
                         "font-size": "1.4em"
                     },
                     "filter": {
