@@ -101,7 +101,7 @@ def welcome_page():
                     },
                     "filter": {
                         "background-color": "#a8eb12",  # <- make the image not dimmed anymore  
-                        "background-image": "linear-gradient(to bottom, #051937, #004d7a, #008793, #00bf72, #a8eb12)"
+                        "background-image": "linear-gradient(to right, #8360c3, #2ebf91)"
                     }
             }
 
