@@ -31,8 +31,8 @@ def main():
     with st.sidebar:
         st.image("https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Mojo_%28magazine%29_Logo.svg/1280px-Mojo_%28magazine%29_Logo.svg.png")
         st.markdown("## Navigation")
-        st.button("Home")
-        st.button("Profile")
+        st.button("Home", on_click=welcome_page)
+        st.button("Profile", on_click=questionnaire)
         st.button("Get Care")
         st.button("Privacy")
         st.button("Partners")
