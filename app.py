@@ -51,7 +51,8 @@ def main():
     # elif app_mode == "Figma":
     #     st.session_state.current_page = 'figma'
     
-    # make sure profile is updated
+    # set openai key
+    st.session_state.openai_api_key = openai_api_key
 
 
     if 'current_page' not in st.session_state:
@@ -60,7 +61,7 @@ def main():
     if st.session_state['current_page'] == 'welcome':
         welcome_page()
     elif st.session_state['current_page'] == 'questions':
-        questionnaire(openai_api_key)
+        questionnaire()
     elif st.session_state['current_page'] == 'chat':
         display_response(openai_api_key=openai_api_key)
     elif st.session_state['current_page'] == 'figma':

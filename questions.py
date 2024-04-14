@@ -3,7 +3,8 @@ from st_audiorec import st_audiorec
 from assistant import PetalAssitant
 import datetime
 
-def collect_user_needs(openai_api_key):
+def collect_user_needs():
+    openai_api_key = st.session_state.openai_api_key
     st.write("Tell us how we can help.")
     wav_audio_data = st_audiorec()
 
@@ -125,7 +126,7 @@ questionnaire_pages = [
         ("Privacy", privacy_concent)
     ]
     
-def questionnaire(openai_api_key):
+def questionnaire():
 
     if 'page_number' not in st.session_state:
         st.session_state.page_number = 0
@@ -135,7 +136,7 @@ def questionnaire(openai_api_key):
         st.progress((st.session_state.page_number + 1) / len(questionnaire_pages))
         st.header(page_title)
         # st.write(f'Page {st.session_state.page_number+1} of {len(questionnaire_pages)}')
-        page_function(openai_api_key) if page_title == "User Needs" else page_function()
+        page_function()
     else:
         st.session_state.page_number = 0  # Reset for reusability
 
