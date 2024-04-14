@@ -1,6 +1,6 @@
 import streamlit as st
 
-def figma_ui():
+def figma_welcome():
     # Main section with user profile and search bar
     # Section headers
     st.header("MOJO Plan")
@@ -14,15 +14,6 @@ def figma_ui():
     col1, col2, col3 = st.columns(3)
 
     with col1:
-        html_string = '''
-            <div id="group1" class="group1">
-            <div id="rectangle3" class="rectangle3">
-            </div>
-            <img id="pie-chart" class="pie-chart" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAJPSURBVHgB1ViNVcIwED58DsAGZgPcwG4gG1AnkA3ACcAJihOgExQnACegTlA2OC/k8jhiSpP+8PR77whN7ufrJW2uAfhjGEAkEHFITUoyIklIhiwWO5KC5INkMxgMCugDRCQhyTEeOckYugI5U+gnUnJ/7gTPecxHTEEbkINnx7n+v9TZEjqJGHf7Vx5iU2gCMpw5jjSRoUfPS0iMKw+xGcTAIVP6AoUSEnopnmc7jBRPk8Uea+Y9lBDrKvYZNn1sUIaSiSXkiVFejEGDmXAe9KjGEmKbsbDJQxxnEIgmhNhufdHOUVAQiBaEVGWWnMHg7LQhxLYyCcdXyg2PJULvDa6HV/E/1T+W0AO3B9oMN3AlcKwDX44kIcXtDq6PgttE/9zyxb0djV0H0rYhvtjHaVvC7rBHs0WoQDI69tIa6+sb6BaKRD+lmliGYS/Xg7w4VoxkWIJJ2SfJHJpBB3+E03q0KEg2JC++6pFir6iZHMkQbOeWs7aFlsDqOgg5ztmU4qnA256x5E692Q2hA2g/HDyvIJcxebvRvkvjqVBMoGPgqUjbYzVS924s1tAjLkypchXzysH+iFnkdQq9ZonjZbXLxMnSBHoCmsVef/MYU142J+PW1arOQLLfd0kKY4t8YTh3SKXQEmjqaPkZNI+xd0khL0IFkUDzSskcX3NoAjQvzNJDLAmw1U/tAn9/il+cptrjGM7KAszmKaF3aXv08s19d2A21/P6xmBD8tTZ8Qy2O45JQuM0ObBSYMpNW2q4FWMBJhu6ElxRRg7wn/EDZUQqMPCbxMIAAAAASUVORK5CYII=">
-            </div>
-        '''
-        st.markdown(html_string, unsafe_allow_html=True)
-
         st.markdown("#### Reproductive Health Education")
         st.write("We provide the most accurate reproductive health information in an easy learning environment suited to different people's needs.")
 
@@ -33,3 +24,39 @@ def figma_ui():
     with col3:
         st.markdown("#### Personalized Recommendations")
         st.write("Based on your profile, we can provide personalized and precision reproductive health recommendations.")
+
+    
+def figa_profile():
+    # Function to create a single step card
+    def create_step_card(step_number, title, status, is_active):
+        # Custom styles for the active card
+        if is_active:
+            border_color = "blue"
+            background_color = "#e0eaff"
+        else:
+            border_color = "rgba(0, 0, 0, 0.1)"
+            background_color = "#ffffff"
+            
+        # Define the card layout and content
+        with st.container():
+            col1, col2, col3 = st.columns([1, 3, 1])
+            with col2:
+                st.markdown(f"""
+                    <div style="border: 2px solid {border_color}; border-radius: 10px; padding: 10px; background-color: {background_color}">
+                        <h4 style="color: {border_color};">STEP {step_number}</h4>
+                        <p>{title}</p>
+                        {f'<button class="st-btn primary">Start Here</button>' if is_active else f'<p>{status}</p>'}
+                    </div>
+                    """, unsafe_allow_html=True)
+
+    # Title and subtitle
+    st.title("Start Your MOJO Plan")
+    st.header("A personalized reproductive health questionnaire & plan.")
+
+    # Steps
+    with st.container():
+        create_step_card(1, "Tell us how we can help.", "Start Here", is_active=True)
+        create_step_card(2, "Tell us about yourself.", "In Progress", is_active=False)
+        create_step_card(3, "Learn about your options.", "Pending", is_active=False)
+        create_step_card(3, "Empower your decisions.", "Pending", is_active=False)
+

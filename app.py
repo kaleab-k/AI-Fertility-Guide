@@ -1,7 +1,7 @@
 import streamlit as st
 from questions import questionnaire
 from response import display_response
-from figma import figma_ui
+from figma import figma_welcome, figa_profile
 
 app_mode = "Welcome"
 
@@ -64,7 +64,7 @@ def main():
     elif st.session_state['current_page'] == 'chat':
         display_response(openai_api_key=openai_api_key)
     elif st.session_state['current_page'] == 'figma':
-        figma_ui()
+        figa_profile()
 
 def welcome_page():
     st.title("Welcome to EmpowerCare!")
