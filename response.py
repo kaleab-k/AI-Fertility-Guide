@@ -1,14 +1,23 @@
 import streamlit as st
 from gtts import gTTS
 from io import BytesIO
+from pathlib import Path
 
+# def text_to_speech(response):
+#     tts = gTTS(text=response, lang='en', slow=False)
+#     audio_buffer = BytesIO()
+#     tts.write_to_fp(audio_buffer)
+#     audio_buffer.seek(0)
+#     return audio_buffer
 
-def text_to_speech(response):
-    tts = gTTS(text=response, lang='en', slow=False)
-    audio_buffer = BytesIO()
-    tts.write_to_fp(audio_buffer)
-    audio_buffer.seek(0)
-    return audio_buffer
+def text_to_speech(client, text, voice):
+    speech_file_path = Path("audio.mp3")
+    response = client.audio.speech.create(
+      model="tts-1",
+      voice=voice,
+      input=text
+    )
+    response.stream_to_file(speech_file_path)
 
 
 from assistant import generate_response
@@ -42,7 +51,10 @@ def display_response(user_data=None, openai_api_key=None):
     client, response = generate_response(user_data, openai_api_key)
 
     ## convert to speech
-    audio_file = text_to_speech(response)
+    text_to_speech(response, "nova")
+    audio_file = open("audio.mp3", 'rb')
+    audio_bytes = audio_file.read()
+    st.audio(audio_bytes, format='audio/mpeg')
     st.audio(audio_file, format='audio/ogg')
 
     # st.write(response)
