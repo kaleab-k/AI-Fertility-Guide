@@ -58,7 +58,7 @@ def step_card(title, description, button_label, is_active):
     button_outcome = st.button if is_active else st.empty  # Only active cards will have a functioning button
     
     with st.container():
-        with card(card_color, outline=True):
+        with card(card_color):
             st.markdown(f"### {title}")
             st.write(description)
             button_outcome(button_label)
