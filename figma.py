@@ -30,25 +30,25 @@ def figma_welcome():
 def figa_profile():
     # Function to create a single step card
     card(
-        title="Hello World!",
+        title="Hello World 1!",
         text="Some description",
         image="http://placekitten.com/300/250",
         url="https://www.google.com",
     )
     card(
-        title="Hello World!",
+        title="Hello World 2!",
         text="Some description",
         image="http://placekitten.com/300/250",
         url="https://www.google.com",
     )
     card(
-        title="Hello World!",
+        title="Hello World 3!",
         text="Some description",
         image="http://placekitten.com/300/250",
         url="https://www.google.com",
     )
     card(
-        title="Hello World!",
+        title="Hello World 4!",
         text="Some description",
         image="http://placekitten.com/300/250",
         url="https://www.google.com",
