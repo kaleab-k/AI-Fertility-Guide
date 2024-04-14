@@ -1,5 +1,7 @@
 import streamlit as st
 from streamlit_card import card
+from st_audiorec import st_audiorec
+
 
 def create_card(title, text, another_text, is_active=False):
     return card(
@@ -92,3 +94,10 @@ def figma_profile():
         create_card("STEP 3", "Learn about your options.", "Pending", False)
     with col4:
         create_card("STEP 3", "Empower your decisions.", "Pending", False)
+
+    
+    st.write("Feel free to tell us how we can help or skip.")
+    wav_audio_data = st_audiorec()
+
+    if wav_audio_data is not None:
+        st.audio(wav_audio_data, format='audio/wav')

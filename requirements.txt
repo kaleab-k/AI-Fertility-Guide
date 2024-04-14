@@ -2,3 +2,4 @@ openai>=1.2
 streamlit-feedback
 streamlit-extras
 streamlit-card
+streamlit-audiorec
