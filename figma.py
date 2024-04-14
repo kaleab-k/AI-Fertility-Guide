@@ -14,11 +14,14 @@ def create_card(title, text, another_text, is_active=False):
                 "filter": "drop-shadow(0px 23px 12px rgba(0,0,0,0.10000000149011612))",
                 "border-radius":"20px",
         #         "padding":"40px",
-        #         "display":"flex",
+                "display":"flex",
                 "flex-direction":"column",
         #         "gap":"30px",
                 "border-style":"hidden",
-        #         "outline": "none"
+                "outline": "none"
+                },
+                "text": {
+                    "color": "black"
                 },
                  "filter": {
                     "background-color": "rgba(0, 0, 0, 0)"  # <- make the image not dimmed anymore  
