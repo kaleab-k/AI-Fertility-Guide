@@ -38,13 +38,13 @@ def collect_personal_info():
 def collect_health_status():
     # Health Status
     st.selectbox("How would you describe your overall health?", ["Excellent", "Good", "Fair", "Poor"], key="health")
-    st.radio("Are you currently taking any medications?", ["Yes", "No"], key="current_medications", value="No")
+    st.radio("Are you currently taking any medications?", ["No", "Yes"], key="current_medications",)
     if st.session_state.current_medications == "Yes":
         st.text_area("Types of medications being used", key="medication_types")
-    st.radio("Do you have any known allergies or adverse reactions to medications?", ["Yes", "No"], key="allergies", value="No")
+    st.radio("Do you have any known allergies or adverse reactions to medications?", ["No", "Yes"], key="allergies", )
     if st.session_state.allergies == "Yes":
         st.text_area("List of allergies", key="allergies_list")
-    st.radio("Do you have any known health conditions that affect your reproductive health?", ["Yes", "No"], key="known_conditions", value="No")
+    st.radio("Do you have any known health conditions that affect your reproductive health?", ["No", "Yes"], key="known_conditions", )
     if st.session_state.known_conditions == "Yes":
         st.text_area("List health conditions", key="known_conditions_list")
 
@@ -52,13 +52,13 @@ def collect_health_status():
 
 def collect_reproductive_history():
     # Reproductive History
-    st.radio("Are you currently using any form of contraception?", ["Yes", "No"], key="current_contraception")
+    st.radio("Are you currently using any form of contraception?", ["No", "Yes"], key="current_contraception")
     if st.session_state.current_contraception == "Yes":
         st.text_area("Types of contraception being used", key="current_contraception_types")
-    st.radio("Have you used any contraceptive methods in the past?", ["Yes", "No"], key="past_contraception")
+    st.radio("Have you used any contraceptive methods in the past?", ["No", "Yes"], key="past_contraception")
     if st.session_state.past_contraception == "Yes":
         st.text_area("Types of past contraception used", key="past_contraception_types")
-    st.radio("Have there been any fertility or pregnancy-related issues in your family history?", ["Yes", "No"], key="family_history")
+    st.radio("Have there been any fertility or pregnancy-related issues in your family history?", ["No", "Yes"], key="family_history")
     if st.session_state.family_history == "Yes":
         st.text_area("Details of fertility or pregnancy-related issues in your family", key="family_history_details")
 
@@ -66,16 +66,16 @@ def collect_reproductive_history():
 
 def collect_insurance_info():
     # Insurance Information
-    st.radio("Do you have health insurance?", ["Yes", "No"], key="insurance_status")
+    st.radio("Do you have health insurance?", ["No", "Yes"], key="insurance_status")
     if st.session_state.insurance_status == "Yes":
         st.text_input("Which provider?", key="insurance_provider")
-    st.radio("Do you need assistance finding clinics that accept your insurance?", ["Yes", "No"], key="need_assistance")
+    st.radio("Do you need assistance finding clinics that accept your insurance?", ["No", "Yes"], key="need_assistance")
 
     navigate()
 
 def collect_future_planning():
     # Future Planning
-    st.radio("Are you considering starting or expanding your family in the near future?", ["Yes", "No"], key="planning_family")
+    st.radio("Are you considering starting or expanding your family in the near future?", ["No", "Yes"], key="planning_family")
     if st.session_state.planning_family == "Yes":
         st.text_input("Have you thought about when you might want to start trying to conceive?", key="conception_plan")
         st.text_area("What are your priorities when considering contraception?", key="contraception_priority")
@@ -87,7 +87,7 @@ def preferences_concerns():
     st.text_area("What concerns do you have regarding contraceptive methods affecting your fertility?", key="fertility_concerns")
     st.text_area("Are there cultural or ethical considerations that we should take into account when providing you with health information?", key="cultural_concerns")
     st.selectbox("What are your preferences for learning about health topics?", ["Reading articles", "Watching videos", "Speaking to a professional", "Other"], key="learning_preferences")
-    st.radio("Would you be interested in a follow-up consultation with a healthcare provider?", ["Yes", "No"], key="consultation_interest")
+    st.radio("Would you be interested in a follow-up consultation with a healthcare provider?", ["No", "Yes"], key="consultation_interest")
     
     navigate()
 
@@ -116,7 +116,7 @@ def collect_other_info():
 
 def privacy_concent():
     # Feedback and Consent
-    st.radio("Do you consent to have this information used to tailor health advice specifically for you?", ["Yes", "No"], key="consent")
+    st.radio("Do you consent to have this information used to tailor health advice specifically for you?", ["No", "Yes"], key="consent")
 
     def prev():
         if st.session_state.page_number > 0:
