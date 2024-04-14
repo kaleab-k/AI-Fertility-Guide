@@ -94,7 +94,7 @@ class PetalAssitant:
         return response.choices[0].message.content
     
     def get_clinics(self, zip_code):
-        prompt = f"Povide longitude and latitude of local clinics near to the zipcode of {zip_code} in python dictionary format only. Do not provide any other text. No intro text. No description. "
+        prompt = f"Povide longitude and latitude of local clinics in the area of the zipcode of {zip_code} in python dictionary format only. Do not provide any other text. No intro text. No description. "
         prompt += '''Here is an example for the format:  
                     { 
                     "clinics": [
