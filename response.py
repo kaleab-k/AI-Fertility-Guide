@@ -28,7 +28,7 @@ def autoplay_audio(file_path: str):
         )
 
 
-from assistant import generate_response
+# from assistant import generate_response
 from questions import compile_user_data
 
 def display_response(user_data=None, openai_api_key=None):
