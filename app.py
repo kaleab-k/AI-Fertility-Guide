@@ -28,28 +28,28 @@ def main():
 
     # st.sidebar.title("Navigation")
     # app_mode = st.sidebar.selectbox("Choose the section", ["Welcome", "Fill Questionnaire", "Chat", "Figma"])
+    # Sidebar navigation
     with st.sidebar:
         st.image("https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Mojo_%28magazine%29_Logo.svg/1280px-Mojo_%28magazine%29_Logo.svg.png")
         st.markdown("## Navigation")
-        st.button("Home", on_click=welcome_page)
-        st.button("Profile", on_click=questionnaire)
-        st.button("Get Care")
-        st.button("Privacy")
-        st.button("Partners")
-        st.button("Help")
+        st.button("Home", on_click=lambda: setattr(st.session_state, 'current_page', 'welcome'))
+        st.button("Profile", on_click=lambda: setattr(st.session_state, 'current_page', 'questions'))
+        st.button("Get Care", on_click=lambda: setattr(st.session_state, 'current_page', 'chat'))
+        st.button("Privacy", on_click=lambda: setattr(st.session_state, 'current_page', 'figma'))
+        st.button("Partners", on_click=lambda: setattr(st.session_state, 'current_page', 'partners'))
+        st.button("Help", on_click=lambda: setattr(st.session_state, 'current_page', 'help'))
 
-    with st.sidebar:
         openai_api_key = st.text_input("OpenAI API Key", key="chatbot_api_key", type="password")
-        "[Get an OpenAI API key](https://platform.openai.com/account/api-keys)"
+        st.markdown("[Get an OpenAI API key](https://platform.openai.com/account/api-keys)")
 
-    if app_mode == "Welcome":
-        st.session_state.current_page = 'welcome'
-    elif app_mode == "Fill Questionnaire":
-        st.session_state.current_page = 'questions'
-    elif app_mode == "Chat":
-        st.session_state.current_page = 'chat'
-    elif app_mode == "Figma":
-        st.session_state.current_page = 'figma'
+    # if app_mode == "Welcome":
+    #     st.session_state.current_page = 'welcome'
+    # elif app_mode == "Fill Questionnaire":
+    #     st.session_state.current_page = 'questions'
+    # elif app_mode == "Chat":
+    #     st.session_state.current_page = 'chat'
+    # elif app_mode == "Figma":
+    #     st.session_state.current_page = 'figma'
     
     if 'current_page' not in st.session_state:
         st.session_state['current_page'] = 'welcome'  # Default page
