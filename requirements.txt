@@ -1,3 +1,2 @@
 openai>=1.2
 streamlit-feedback
-gTTS
