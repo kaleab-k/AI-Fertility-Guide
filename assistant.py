@@ -85,7 +85,7 @@ class PetalAssitant:
         assistant = self.client.beta.assistants.create(
             name="Petal Health Agent",
             instructions="You are an expert in reproductive health and personalized medical consultation. Your task is to interact with users in a sensitive and informative manner to collect detailed personal and medical information. Use this information to provide tailored advice on contraception, fertility planning, and healthcare navigation. ",
-            tools=[{"type": "code_interpreter"}],
+            # tools=[{"type": "code_interpreter"}],
             model="gpt-4-turbo",
         )
 
@@ -113,7 +113,7 @@ class PetalAssitant:
             messages = self.client.beta.threads.messages.list(
                 thread_id=thread.id
             )
-            return messages
+            return messages[0]
 
             return response.choices[0].message.content
     
