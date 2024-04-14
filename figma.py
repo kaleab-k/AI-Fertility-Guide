@@ -35,5 +35,23 @@ def figa_profile():
         image="http://placekitten.com/300/250",
         url="https://www.google.com",
     )
+    card(
+        title="Hello World!",
+        text="Some description",
+        image="http://placekitten.com/300/250",
+        url="https://www.google.com",
+    )
+    card(
+        title="Hello World!",
+        text="Some description",
+        image="http://placekitten.com/300/250",
+        url="https://www.google.com",
+    )
+    card(
+        title="Hello World!",
+        text="Some description",
+        image="http://placekitten.com/300/250",
+        url="https://www.google.com",
+    )
 
 
