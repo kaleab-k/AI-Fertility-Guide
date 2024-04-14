@@ -11,7 +11,7 @@ def main():
     # Set page config for wide mode
     st.set_page_config(
         page_title="EmpowerCare",
-        page_icon="https://www.svgrepo.com/show/287894/care.svg",
+        page_icon="asset/petal-logo.png",
         menu_items={
             "About": "Welcome to EmpowerCare, a revolutionary AI-assisted reproductive health resource center designed to empower you with personalized, comprehensive information that respects and responds to your unique reproductive health needs.",
             "Get help": None,
