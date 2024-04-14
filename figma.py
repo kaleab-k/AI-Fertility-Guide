@@ -10,7 +10,7 @@ def create_card(title, text, another_text, is_active=False):
         styles={ "card": {
                 "width": "100%",
         #         "background-color":"#ffffff",
-        #         "height": "320px",
+                "height": "100px",
                 "filter": "drop-shadow(0px 23px 12px rgba(0,0,0,0.10000000149011612))",
                 "border-radius":"20px",
         #         "padding":"40px",
@@ -20,7 +20,10 @@ def create_card(title, text, another_text, is_active=False):
                 "border-style":"hidden",
                 "outline": "blue" if is_active else "none"
                 },
-                "text, title": {
+                "text": {
+                    "color": "black"
+                },
+                "title": {
                     "color": "black"
                 },
                  "filter": {
