@@ -135,7 +135,7 @@ def welcome_page():
         # st.write("Based on your profile, we can provide personalized and precision reproductive health recommendations.")
         create_card("Personalized Recommendations", "Based on your profile, we can provide personalized and precision reproductive health recommendations.")
     
-    st.button("Get Started", on_click=lambda: setattr(st.session_state, 'current_page', 'questions'))
+        st.button("Get Started", on_click=lambda: setattr(st.session_state, 'current_page', 'questions'))
         
 
 if __name__ == "__main__":
