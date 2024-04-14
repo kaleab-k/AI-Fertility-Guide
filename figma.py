@@ -1,5 +1,5 @@
 import streamlit as st
-from streamlit_extras import card
+from streamlit_card import card
 
 def figma_welcome():
     # Main section with user profile and search bar
