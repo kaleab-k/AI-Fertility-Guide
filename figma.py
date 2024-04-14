@@ -29,70 +29,27 @@ def figma_welcome():
     
 def figa_profile():
     # Function to create a single step card
-    card(
-        title="Hello World 1!",
-        text="Some description",
-        image="http://placekitten.com/300/250",
-        url="https://www.google.com",
-        styles={ "card": {
-                "width": "25%",
-                "height": "500px",
-                "border-radius": "60px",
-                "box-shadow": "0 0 10px rgba(0,0,0,0.5)",
-            },
-            "text": {
-                "font-family": "serif",
-            }
-        }
-
-    )
-    card(
-        title="Hello World 2!",
-        text="Some description",
-        image="http://placekitten.com/300/250",
-        url="https://www.google.com",
-        styles={ "card": {
-                "width": "25%",
-                "height": "500px",
-                "border-radius": "60px",
-                "box-shadow": "0 0 10px rgba(0,0,0,0.5)",
-            },
-            "text": {
-                "font-family": "serif",
-            }
-        }
-    )
-    card(
-        title="Hello World 3!",
-        text="Some description",
-        image="http://placekitten.com/300/250",
-        url="https://www.google.com",
-        styles={ "card": {
-                "width": "25%",
-                "height": "500px",
-                "border-radius": "60px",
-                "box-shadow": "0 0 10px rgba(0,0,0,0.5)",
-            },
-            "text": {
-                "font-family": "serif",
-            }
-        }
-    )
-    card(
-        title="Hello World 4!",
-        text="Some description",
-        image="http://placekitten.com/300/250",
-        url="https://www.google.com",
-        styles={ "card": {
-                "width": "25%",
-                "height": "500px",
-                "border-radius": "60px",
-                "box-shadow": "0 0 10px rgba(0,0,0,0.5)",
-            },
-            "text": {
-                "font-family": "serif",
-            }
-        }
-    )
-
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        card(
+            title="Hello World 1!",
+            text="Some description",
+            image="http://placekitten.com/300/250",
+            url="https://www.google.com",
+            
+        )
+    with col2:
+        card(
+            title="Hello World 2!",
+            text="Some description",
+            image="http://placekitten.com/300/250",
+            url="https://www.google.com",
+        )
+    with col3:
+        card(
+            title="Hello World 3!",
+            text="Some description",
+            image="http://placekitten.com/300/250",
+            url="https://www.google.com",
+        )
 
