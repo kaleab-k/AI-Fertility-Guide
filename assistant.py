@@ -113,7 +113,8 @@ class PetalAssitant:
             messages = self.client.beta.threads.messages.list(
                 thread_id=thread.id
             )
-            return messages[0]
+            print(messages)
+            return messages
 
             return response.choices[0].message.content
     
