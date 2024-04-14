@@ -39,8 +39,9 @@ def figa_profile():
             
         # Define the card layout and content
         with st.container():
-            col1, col2, col3 = st.columns([1, 3, 1])
-            with col2:
+            col1, col2, col3, col4 = st.columns(4)
+            col = [col1, col2, col3, col4][step_number]
+            with col:
                 st.markdown(f"""
                     <div style="border: 2px solid {border_color}; border-radius: 10px; padding: 10px; background-color: {background_color}">
                         <h4 style="color: {border_color};">STEP {step_number}</h4>
@@ -58,5 +59,5 @@ def figa_profile():
         create_step_card(1, "Tell us how we can help.", "Start Here", is_active=True)
         create_step_card(2, "Tell us about yourself.", "In Progress", is_active=False)
         create_step_card(3, "Learn about your options.", "Pending", is_active=False)
-        create_step_card(3, "Empower your decisions.", "Pending", is_active=False)
+        create_step_card(4, "Empower your decisions.", "Pending", is_active=False)
 
