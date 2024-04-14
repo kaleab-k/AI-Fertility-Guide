@@ -18,9 +18,9 @@ def create_card(title, text, another_text, is_active=False):
                 "flex-direction":"column",
         #         "gap":"30px",
                 "border-style":"hidden",
-                "outline": "none"
+                "outline": "blue" if is_active else "none"
                 },
-                "text": {
+                "text, title": {
                     "color": "black"
                 },
                  "filter": {
