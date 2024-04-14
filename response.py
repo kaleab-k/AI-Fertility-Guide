@@ -1,4 +1,16 @@
 import streamlit as st
+from gtts import gTTS
+from io import BytesIO
+
+
+def text_to_speech(response):
+    tts = gTTS(text=response, lang='en', slow=False)
+    audio_buffer = BytesIO()
+    tts.write_to_fp(audio_buffer)
+    audio_buffer.seek(0)
+    return audio_buffer
+
+
 from assistant import generate_response
 from questions import compile_user_data
 
@@ -28,6 +40,11 @@ def display_response(user_data=None, openai_api_key=None):
     st.caption("🚀 EmpowerCare Chatbot powered by OpenAI LLM")
     # Assuming generate_advice is a function that sends data to OpenAI and gets a response
     client, response = generate_response(user_data, openai_api_key)
+
+    ## convert to speech
+    audio_file = text_to_speech(response)
+    st.audio(audio_file, format='audio/ogg')
+
     # st.write(response)
     st.chat_message("assistant").write(response)
 
