@@ -24,7 +24,7 @@ def collect_user_needs():
         
         st.text_area("Feel free to edit the transcription: ", value=transcription, key="user_needs")
 
-        navigate()
+    navigate()
 
 def collect_personal_info():
     # Personal Information
@@ -112,7 +112,7 @@ def collect_other_info():
         
         st.text_area("Feel free to edit the transcription: ", value=transcription, key="user_more_info")
 
-        navigate()
+    navigate()
 
 def privacy_concent():
     # Feedback and Consent
