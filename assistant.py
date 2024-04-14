@@ -9,7 +9,7 @@ class PetalAssitant:
         self.api_key = api_key
 
         self.client = self.get_client()
-        self.assistant = self.create_assistant()
+        self.assistant, self.thread = self.create_assistant()
 
     def create_openai_assistant_prompt(self, user_data):
 
@@ -88,8 +88,8 @@ class PetalAssitant:
             tools=[{"type": "retrieval"}],
             model="gpt-4-turbo",
         )
-
-        return assistant
+        thread = self.client.beta.threads.create()
+        return assistant, thread
 
 
     def generate_response(self, user_data, api_key):
@@ -97,21 +97,21 @@ class PetalAssitant:
         prompt = self.create_openai_assistant_prompt(user_data)
 
         # response = self.client.chat.completions.create(model="gpt-4-turbo", messages=[{"role": "assistant", "content": prompt}])
-        thread = self.client.beta.threads.create()
+        
         message = self.client.beta.threads.messages.create(
-            thread_id=thread.id,
+            thread_id=self.thread.id,
             role="assistant",
             content=prompt
         )
         run = self.client.beta.threads.runs.create_and_poll(
-            thread_id=thread.id,
+            thread_id=self.thread.id,
             assistant_id=self.assistant.id,
             instructions=prompt
         )
 
         if run.status == 'completed': 
             messages = self.client.beta.threads.messages.list(
-                thread_id=thread.id
+                thread_id=self.thread.id
             )
             
             return messages.data[0].content[0].text.value
@@ -119,9 +119,24 @@ class PetalAssitant:
             return response.choices[0].message.content
     
     def chat(self, messages):
-        response = self.client.chat.completions.create(model="gpt-4-turbo", messages=messages)
+        # response = self.client.chat.completions.create(model="gpt-4-turbo", messages=messages)
+        message = self.client.beta.threads.messages.create(
+            thread_id=self.thread.id,
+            role="user",
+            content=messages[0]['content'],
+        )
 
-        return response.choices[0].message.content
+        run = self.client.beta.threads.runs.create(
+            thread_id=self.thread.id,
+            assistant_id=self.assistant.id,
+        )
+        if run.status == 'completed': 
+            messages = self.client.beta.threads.messages.list(
+                thread_id=self.thread.id, order="asc", after=message.id
+            )
+
+            return messages.data[-1].content[0].text.value
+        # return response.choices[0].message.content
     
     def get_clinics(self, zip_code):
         prompt = f"Povide longitude and latitude of local clinics in the area of the zipcode of {zip_code} in python dictionary format only. Do not provide any other text. No intro text. No description. "
