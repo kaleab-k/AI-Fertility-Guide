@@ -34,6 +34,15 @@ def figa_profile():
             title=title,
             text=text,
             image="http://placekitten.com/300/250",
+            styles={ "card": {
+                    "width": "90%",
+                    "border-radius": "60px",
+                    "box-shadow": "0 0 10px rgba(0,0,0,0.5)",
+                },
+                "text": {
+                    "font-family": "serif",
+                }
+            }
         )
     
     col1, col2, col3 = st.columns(3)
