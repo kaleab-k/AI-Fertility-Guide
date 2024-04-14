@@ -1,4 +1,5 @@
 import streamlit as st
+from streamlit_extras import card
 
 def figma_welcome():
     # Main section with user profile and search bar
@@ -28,36 +29,11 @@ def figma_welcome():
     
 def figa_profile():
     # Function to create a single step card
-    def create_step_card(step_number, title, status, is_active):
-        # Custom styles for the active card
-        if is_active:
-            border_color = "blue"
-            background_color = "#e0eaff"
-        else:
-            border_color = "rgba(0, 0, 0, 0.1)"
-            background_color = "#ffffff"
-            
-        # Define the card layout and content
-        with st.container():
-            col1, col2, col3, col4 = st.columns(4)
-            col = [col1, col2, col3, col4][step_number]
-            with col:
-                st.markdown(f"""
-                    <div style="border: 2px solid {border_color}; border-radius: 10px; padding: 10px; background-color: {background_color}">
-                        <h4 style="color: {border_color};">STEP {step_number}</h4>
-                        <p>{title}</p>
-                        {f'<button class="st-btn primary">Start Here</button>' if is_active else f'<p>{status}</p>'}
-                    </div>
-                    """, unsafe_allow_html=True)
+    card(
+        title="Hello World!",
+        text="Some description",
+        image="http://placekitten.com/300/250",
+        url="https://www.google.com",
+    )
 
-    # Title and subtitle
-    st.title("Start Your MOJO Plan")
-    st.header("A personalized reproductive health questionnaire & plan.")
-
-    # Steps
-    with st.container():
-        create_step_card(1, "Tell us how we can help.", "Start Here", is_active=True)
-        create_step_card(2, "Tell us about yourself.", "In Progress", is_active=False)
-        create_step_card(3, "Learn about your options.", "Pending", is_active=False)
-        create_step_card(4, "Empower your decisions.", "Pending", is_active=False)
 
