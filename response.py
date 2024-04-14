@@ -55,7 +55,6 @@ def display_response(user_data=None, openai_api_key=None):
     audio_file = open("audio.mp3", 'rb')
     audio_bytes = audio_file.read()
     st.audio(audio_bytes, format='audio/mpeg')
-    st.audio(audio_file, format='audio/ogg')
 
     # st.write(response)
     st.chat_message("assistant").write(response)
