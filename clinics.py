@@ -57,7 +57,7 @@ def clinics():
             'TextLayer',  # Use TextLayer to show text
             clinics_df,
             pickable=True,
-            get_position='[lo, lat]',
+            get_position='[lon, lat]',
             get_text='name',  # Clinic name will be shown on the map
             get_size=16,
             get_color=[255, 0, 0],  # RGB color of the text
