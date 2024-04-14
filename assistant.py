@@ -135,7 +135,7 @@ class PetalAssitant:
                 thread_id=self.thread.id, order="asc", after=message.id
             )
 
-            return messages.data[-1].content[0].text.value
+            return messages.data[0].content[0].text.value
         # return response.choices[0].message.content
     
     def get_clinics(self, zip_code):
