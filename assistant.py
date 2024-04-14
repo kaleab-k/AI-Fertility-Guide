@@ -9,6 +9,7 @@ class PetalAssitant:
         self.api_key = api_key
 
         self.client = self.get_client()
+        self.assistant = self.create_assistant()
 
     def create_openai_assistant_prompt(self, user_data):
 
@@ -79,14 +80,42 @@ class PetalAssitant:
 
     def get_client(self):
         return OpenAI(api_key=self.api_key)
+    
+    def create_assistant(self):
+        assistant = self.client.beta.assistants.create(
+            name="Petal Health Agent",
+            instructions="You are an expert in reproductive health and personalized medical consultation. Your task is to interact with users in a sensitive and informative manner to collect detailed personal and medical information. Use this information to provide tailored advice on contraception, fertility planning, and healthcare navigation. ",
+            tools=[{"type": "code_interpreter"}],
+            model="gpt-4-turbo",
+        )
+
+        return assistant
+
 
     def generate_response(self, user_data, api_key):
 
         prompt = self.create_openai_assistant_prompt(user_data)
 
-        response = self.client.chat.completions.create(model="gpt-4-turbo", messages=[{"role": "assistant", "content": prompt}])
+        # response = self.client.chat.completions.create(model="gpt-4-turbo", messages=[{"role": "assistant", "content": prompt}])
+        thread = self.client.beta.threads.create()
+        message = self.client.beta.threads.messages.create(
+            thread_id=thread.id,
+            role="assistant",
+            content=prompt
+        )
+        run = self.client.beta.threads.runs.create_and_poll(
+            thread_id=thread.id,
+            assistant_id=self.assistant.id,
+            instructions=prompt
+        )
 
-        return response.choices[0].message.content
+        if run.status == 'completed': 
+            messages = self.client.beta.threads.messages.list(
+                thread_id=thread.id
+            )
+            return messages
+
+            return response.choices[0].message.content
     
     def chat(self, messages):
         response = self.client.chat.completions.create(model="gpt-4-turbo", messages=messages)
