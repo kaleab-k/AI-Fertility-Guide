@@ -64,7 +64,7 @@ def main():
     elif st.session_state['current_page'] == 'chat':
         display_response(openai_api_key=openai_api_key)
     elif st.session_state['current_page'] == 'figma':
-        figa_profile()
+        figma_welcome()
 
 def welcome_page():
     st.title("Welcome to EmpowerCare!")
