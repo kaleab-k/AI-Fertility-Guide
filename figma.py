@@ -17,14 +17,14 @@ def create_card(title, text, another_text, is_active=False):
                 "display":"flex",
                 "flex-direction":"column",
         #         "gap":"30px",
-                "border-style":"hidden",
+                "border":"1px solid blue" if is_active else "none",
                 "outline": "blue" if is_active else "none"
                 },
                 "text": {
-                    "color": "black"
+                    "color": "#ddd"
                 },
                 "title": {
-                    "color": "black"
+                    "color": "#eee"
                 },
                  "filter": {
                     "background-color": "rgba(0, 0, 0, 0)"  # <- make the image not dimmed anymore  
