@@ -60,7 +60,7 @@ def display_response(user_data=None, openai_api_key=None):
         
 
     st.title("💬 Your Personalized Advice")
-    st.caption("🚀 EmpowerCare Chatbot powered by OpenAI LLM")
+    st.caption("🚀 PetalHealth Chatbot powered by OpenAI LLM")
     # Assuming generate_advice is a function that sends data to OpenAI and gets a response
     assistant = PetalAssitant(openai_api_key)
     response = assistant.generate_response(user_data, openai_api_key)
