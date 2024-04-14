@@ -82,7 +82,7 @@ def welcome_page():
             styles={ "card": {
                     "width": "100%",
             #         "background-color":"#ffffff",
-                    "height": "100px",
+                    # "height": "100px",
                     "filter": "drop-shadow(0px 23px 12px rgba(0,0,0,0.10000000149011612))",
                     "border-radius":"20px",
                     "margin": "20px",
@@ -100,7 +100,8 @@ def welcome_page():
                         "color": "#444"
                     },
                     "filter": {
-                        "background-color": "rgba(0, 0, 0, 0)"  # <- make the image not dimmed anymore  
+                        "background-color": "#a8eb12",  # <- make the image not dimmed anymore  
+                        "background-image": "linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12)"
                     }
             }
 
