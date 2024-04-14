@@ -51,15 +51,33 @@ def figma_welcome():
         # st.write("Based on your profile, we can provide personalized and precision reproductive health recommendations.")
         create_card("Personalized Recommendations", "Based on your profile, we can provide personalized and precision reproductive health recommendations.")
     
-def figa_profile():
-    # Function to create a single step card
+
+# Custom function to generate a card for each step
+def step_card(title, description, button_label, is_active):
+    card_color = "primary" if is_active else "secondary"
+    button_outcome = st.button if is_active else st.empty  # Only active cards will have a functioning button
     
-    col1, col2, col3 = st.columns(3)
+    with st.container():
+        with card(card_color, outline=True):
+            st.markdown(f"### {title}")
+            st.write(description)
+            button_outcome(button_label)
 
+
+def figma_profile():
+    # Function to create a single step car
+
+    # Title and subtitle
+    st.title("Start Your MOJO Plan")
+    st.header("A personalized reproductive health questionnaire & plan.")
+
+    # Cards for each step
+    col1, col2, col3, col4 = st.columns(4)
     with col1:
-        create_card("Hello World 1!", "Some description")
+        step_card("STEP 1", "Tell us how we can help.", "Start Here", True)
     with col2:
-        create_card("Hello World 2!", "Some description")
+        step_card("STEP 2", "Tell us about yourself.", "In Progress", False)
     with col3:
-        create_card("Hello World 3!", "Some description")
-
+        step_card("STEP 3", "Learn about your options.", "Pending", False)
+    with col4:
+        step_card("STEP 3", "Empower your decisions.", "Pending", False)
