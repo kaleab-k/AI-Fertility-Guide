@@ -6,11 +6,6 @@ from figma import figma_ui
 app_mode = "Welcome"
 
 
-def local_css(file_name):
-    with open(file_name) as f:
-        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
-
-local_css("style.css")
 
 def main():
     # Set page config for wide mode
@@ -24,6 +19,13 @@ def main():
         },
         layout="wide"
     )
+    
+    def local_css(file_name):
+        with open(file_name) as f:
+            st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+
+    local_css("style.css")
+
 
     st.sidebar.title("Navigation")
     app_mode = st.sidebar.selectbox("Choose the section", ["Welcome", "Fill Questionnaire", "Chat", "Figma"])
