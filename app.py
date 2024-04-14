@@ -94,10 +94,10 @@ def welcome_page():
                     "outline": "blue" if is_active else "none"
                     },
                     "text": {
-                        "color": "#ccc"
+                        "color": "#444"
                     },
                     "title": {
-                        "color": "#eee"
+                        "color": "#777"
                     },
                     "filter": {
                         "background-color": "#a8eb12",  # <- make the image not dimmed anymore  
