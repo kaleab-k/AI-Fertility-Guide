@@ -51,7 +51,7 @@ def display_response(user_data=None, openai_api_key=None):
     client, response = generate_response(user_data, openai_api_key)
 
     ## convert to speech
-    text_to_speech(response, "nova")
+    text_to_speech(client, response, "nova")
     audio_file = open("audio.mp3", 'rb')
     audio_bytes = audio_file.read()
     st.audio(audio_bytes, format='audio/mpeg')
