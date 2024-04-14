@@ -88,7 +88,7 @@ def display_response(user_data=None, openai_api_key=None):
         response = assistant.chat(messages=st.session_state.messages)
         
         st.session_state.messages.append({"role": "assistant", "content": response})
-        st.chat_message("assistant").write(msg)
+        st.chat_message("assistant").write(response)
 
 def save_feedback(user_data, feedback):
     # Placeholder for saving feedback
