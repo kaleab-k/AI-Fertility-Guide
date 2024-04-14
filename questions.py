@@ -1,4 +1,29 @@
 import streamlit as st
+from st_audiorec import st_audiorec
+from assistant import PetalAssitant
+import datetime
+
+def collect_user_needs(openai_api_key):
+    st.write("Tell us how we can help.")
+    wav_audio_data = st_audiorec()
+
+    def save_audio_file(audio_bytes, file_extension):
+        file_name = f"audio_user_needs.{file_extension}"
+
+        with open(file_name, "wb") as f:
+            f.write(audio_bytes)
+        return file_name
+    
+    if wav_audio_data is not None:
+        # st.audio(wav_audio_data, format='audio/wav')
+        file_name = save_audio_file(wav_audio_data, "mp3")
+
+        assistant = assistant = PetalAssitant(openai_api_key)
+        transcription = assistant.transcribe(file_name)
+        
+        st.text_area("Feel free to edit the transcription: ", value=transcription)
+
+        navigate()
 
 def collect_personal_info():
     # Personal Information
@@ -90,6 +115,7 @@ def privacy_concent():
         
 
 questionnaire_pages = [
+        ("User Needs", collect_user_needs),
         ("Personal Information", collect_personal_info),
         ("Health Status", collect_health_status),
         ("Reproductive History", collect_reproductive_history),
@@ -99,7 +125,7 @@ questionnaire_pages = [
         ("Privacy", privacy_concent)
     ]
     
-def questionnaire():
+def questionnaire(openai_api_key):
 
     if 'page_number' not in st.session_state:
         st.session_state.page_number = 0
@@ -109,7 +135,7 @@ def questionnaire():
         st.progress((st.session_state.page_number + 1) / len(questionnaire_pages))
         st.header(page_title)
         # st.write(f'Page {st.session_state.page_number+1} of {len(questionnaire_pages)}')
-        page_function()
+        page_function(openai_api_key) if page_title == "User Needs" else page_function()
     else:
         st.session_state.page_number = 0  # Reset for reusability
 
