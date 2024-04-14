@@ -116,5 +116,5 @@ def figma_profile(openai_api_key):
         assistant = assistant = PetalAssitant(openai_api_key)
         transcription = assistant.transcribe(file_name)
         
-        st.text_area("Feel free to edit the transcription: ", placeholder=transcription)
+        st.text_area("Feel free to edit the transcription: ", value=transcription)
 
