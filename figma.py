@@ -38,10 +38,7 @@ def figa_profile():
                     "width": "100%",
                     "border-radius": "60px",
                     "box-shadow": "0 0 10px rgba(0,0,0,0.5)",
-                },
-                "text": {
-                    "font-family": "serif",
-                }
+                    },
             }
         )
     
