@@ -3,7 +3,7 @@ from streamlit_card import card
 from st_audiorec import st_audiorec
 from assistant import PetalAssitant
 import base64
-
+import datetime
 
 def create_card(title, text, another_text, is_active=False):
     return card(
@@ -101,12 +101,20 @@ def figma_profile(openai_api_key):
     st.write("Feel free to tell us how we can help or skip.")
     wav_audio_data = st_audiorec()
 
+    def save_audio_file(audio_bytes, file_extension):
+        timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+        file_name = f"audio_{timestamp}.{file_extension}"
+
+        with open(file_name, "wb") as f:
+            f.write(audio_bytes)
+        return file_name
+    
     if wav_audio_data is not None:
         st.audio(wav_audio_data, format='audio/wav')
-        audio_data_bytes = base64.b64decode(wav_audio_data.split(',')[1])
+        file_name = save_audio_file(wav_audio_data, "mp3")
 
         assistant = assistant = PetalAssitant(openai_api_key)
-        transcription = assistant.transcribe(audio_data_bytes)
+        transcription = assistant.transcribe(file_name)
         
         st.text_area(transcription)
 

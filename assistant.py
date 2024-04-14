@@ -102,8 +102,12 @@ class PetalAssitant:
         )
         response.stream_to_file(speech_file_path)
 
-    def transcribe(self, wav_audio_data):
-        self.client.audio.transcriptions.create(
+    def transcribe(self, audio_path):
+        audio_file= open(audio_path, "rb")
+
+        transcription = self.client.audio.transcriptions.create(
             model="whisper-1", 
-            file=wav_audio_data
+            file=audio_file
         )
+
+        return transcription.text
