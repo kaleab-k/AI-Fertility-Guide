@@ -60,7 +60,7 @@ def main():
     if st.session_state['current_page'] == 'welcome':
         welcome_page()
     elif st.session_state['current_page'] == 'questions':
-        questionnaire()
+        questionnaire(openai_api_key)
     elif st.session_state['current_page'] == 'chat':
         display_response(openai_api_key=openai_api_key)
     elif st.session_state['current_page'] == 'figma':
