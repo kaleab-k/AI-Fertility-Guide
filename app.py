@@ -1,10 +1,12 @@
 import streamlit as st
 from questions import questionnaire
 from response import display_response
+from figma import figma_ui
 
 app_mode = "Welcome"
 
 def main():
+    # Set page config for wide mode
     st.set_page_config(
         page_title="EmpowerCare",
         page_icon="https://www.svgrepo.com/show/287894/care.svg",
@@ -12,11 +14,12 @@ def main():
             "About": "Welcome to EmpowerCare, a revolutionary AI-assisted reproductive health resource center designed to empower you with personalized, comprehensive information that respects and responds to your unique reproductive health needs.",
             "Get help": None,
             "Report a Bug": None
-        }
+        },
+        layout="wide"
     )
 
     st.sidebar.title("Navigation")
-    app_mode = st.sidebar.selectbox("Choose the section", ["Welcome", "Fill Questionnaire", "Chat"])
+    app_mode = st.sidebar.selectbox("Choose the section", ["Welcome", "Fill Questionnaire", "Chat", "Figma"])
 
     with st.sidebar:
         openai_api_key = st.text_input("OpenAI API Key", key="chatbot_api_key", type="password")
@@ -28,6 +31,8 @@ def main():
         st.session_state.current_page = 'questions'
     elif app_mode == "Chat":
         st.session_state.current_page = 'chat'
+    elif app_mode == "Figma":
+        st.session_state.current_page = 'figma'
     
     if 'current_page' not in st.session_state:
         st.session_state['current_page'] = 'welcome'  # Default page
@@ -38,6 +43,8 @@ def main():
         questionnaire()
     elif st.session_state['current_page'] == 'chat':
         display_response(openai_api_key=openai_api_key)
+    elif st.session_state['current_page'] == 'figma':
+        figma_ui()
 
 def go_to_questions():
     app_mode == "Fill Questionnaire"
