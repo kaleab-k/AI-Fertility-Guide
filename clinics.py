@@ -14,6 +14,29 @@ def clinics():
     assistant = assistant = PetalAssitant(openai_api_key)
 
     response = assistant.get_clinics(zip_code)
+
+    response = '''{ 
+                    "clinics": [
+                        {
+                            "name": "Dr. Michael Dimattina, MD",
+                            "lat": 38.8831261402867,
+                            "lon": -77.10734461236984,
+                            "services_offered": ["General Health", "Specialty Care"],
+                        },
+                        {
+                            "name": "Virginia Center for Reproductive Medicine",
+                            "lat": 38.94925562982108, 
+                            "lon": -77.32806558381132,
+                            "services_offered": ["Reproductive Medicine"],
+                        },
+                        {
+                            "name": "Shady Grove Fertility Center in Washington, D.C.",
+                            "lat": 38.90334004167951, 
+                            "lon": -77.04549237325074,
+                            "services_offered": ["Reproductive Medicine"],
+                        }
+                    ]}
+                '''
     st.write(response)
 
     res = json.loads(response)
