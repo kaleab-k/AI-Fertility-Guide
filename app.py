@@ -73,7 +73,7 @@ def welcome_page():
 
     st.image("asset/petal_cover.png")
 
-    def create_card(title, text, another_text, is_active=False):
+    def create_card(title, text, is_active=False):
         return card(
             title=title,
             text=text,
