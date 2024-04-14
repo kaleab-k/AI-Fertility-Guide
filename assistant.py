@@ -94,7 +94,16 @@ class PetalAssitant:
         return response.choices[0].message.content
     
     def get_clinics(self, zip_code):
-        prompt = f"Provide longitude and latitude of local clinics near to the zipcode of {zip_code} that accept the user's insurance and offer required services in python dictionary format only. Do not provide any other text. No intro text. No description."
+        prompt = f"""Povide longitude and latitude of local clinics near to the zipcode of {zip_code} that accept the user's insurance and offer required services in python dictionary format only. Do not provide any other text. No intro text. No description. 
+                    Here is an example:  { 
+                    'clinics': [
+                        {
+                            'name': 'Health Care Clinic',
+                            'lat': 37.7749,
+                            'lon': -122.4194,
+                            'services_offered': ['General Health', 'Specialty Care'],
+                        },
+                    """
         response = self.client.chat.completions.create(model="gpt-4-turbo", messages=[{"role": "assistant", "content": prompt}])
 
         return response.choices[0].message.content
