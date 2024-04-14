@@ -16,9 +16,6 @@ def clinics():
     # Convert dictionary to pandas DataFrame
     clinics_df = pd.DataFrame(response['clinics'])
 
-    # Rename columns for compatibility with st.map
-    clinics_df.rename(columns={'latitude': 'lat', 'longitude': 'lon'}, inplace=True)
-
     # Display the map
     st.map(clinics_df)
 
