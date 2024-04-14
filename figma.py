@@ -14,7 +14,7 @@ def create_card(title, text, another_text, is_active=False):
                 "filter": "drop-shadow(0px 23px 12px rgba(0,0,0,0.10000000149011612))",
                 "border-radius":"20px",
                 "margin": "20px",
-        #         "padding":"40px",
+                "padding":"10px",
                 "display":"flex",
                 "flex-direction":"column",
         #         "gap":"30px",
