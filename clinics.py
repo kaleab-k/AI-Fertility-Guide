@@ -21,45 +21,47 @@ def clinics():
     # Convert dictionary to pandas DataFrame
     clinics_df = pd.DataFrame(res['clinics'])
 
-    # # Display the map
-    # st.map(clinics_df)
-    # Function to join services into a single string
-    clinics_df['services_offered'] = clinics_df['services_offered'].apply(lambda x: ', '.join(x))
+    if len(res['clinics']) < 1:
+        # # Display the map
+        st.map(clinics_df)
+    else:
+        # Function to join services into a single string
+        clinics_df['services_offered'] = clinics_df['services_offered'].apply(lambda x: ', '.join(x))
 
-    # Set up PyDeck layer for the map
-    layer = pdk.Layer(
-        'TextLayer',  # Use TextLayer to show text
-        clinics_df,
-        pickable=True,
-        get_position='[lo, lat]',
-        get_text='name',  # Clinic name will be shown on the map
-        get_size=16,
-        get_color=[255, 0, 0],  # RGB color of the text
-        get_angle=0,
-        # Note that text alignment and anchor are necessary for TextLayer
-        get_text_anchor='"middle"',
-        get_alignment_baseline='"center"'
-    )
+        # Set up PyDeck layer for the map
+        layer = pdk.Layer(
+            'TextLayer',  # Use TextLayer to show text
+            clinics_df,
+            pickable=True,
+            get_position='[lo, lat]',
+            get_text='name',  # Clinic name will be shown on the map
+            get_size=16,
+            get_color=[255, 0, 0],  # RGB color of the text
+            get_angle=0,
+            # Note that text alignment and anchor are necessary for TextLayer
+            get_text_anchor='"middle"',
+            get_alignment_baseline='"center"'
+        )
 
-    # Define the initial view for the PyDeck map
-    view_state = pdk.ViewState(
-        latitude=clinics_df['lat'].mean(),
-        longitude=clinics_df['lon'].mean(),
-        zoom=11,
-        pitch=0
-    )
+        # Define the initial view for the PyDeck map
+        view_state = pdk.ViewState(
+            latitude=clinics_df['lat'].mean(),
+            longitude=clinics_df['lon'].mean(),
+            zoom=11,
+            pitch=0
+        )
 
-    # Render PyDeck map in Streamlit
-    st.pydeck_chart(pdk.Deck(
-        layers=[layer],
-        initial_view_state=view_state,
-        tooltip={
-            'html': '<b>Name:</b> {name}<br /><b>Services Offered:</b> {services_offered}',
-            'style': {
-                'color': 'white'
+        # Render PyDeck map in Streamlit
+        st.pydeck_chart(pdk.Deck(
+            layers=[layer],
+            initial_view_state=view_state,
+            tooltip={
+                'html': '<b>Name:</b> {name}<br /><b>Services Offered:</b> {services_offered}',
+                'style': {
+                    'color': 'white'
+                }
             }
-        }
-    ))
+        ))
 
 
     
