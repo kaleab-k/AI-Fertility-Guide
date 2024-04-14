@@ -68,10 +68,23 @@ def preferences_concerns():
 def privacy_concent():
     # Feedback and Consent
     st.radio("Do you consent to have this information used to tailor health advice specifically for you?", ["Yes", "No"], key="consent")
-    if st.button("Finish"):
+
+    def prev():
+        if st.session_state.page_number > 0:
+            st.session_state.page_number -= 1
+    def finish():
         user_data = compile_user_data()
+        st.session_state['profile_updated'] = True
         st.success("Profile Submitted Successfully!")
         st.info(user_data)
+
+    col1, col2 = st.columns(2)
+
+    col1.button("Back", on_click=prev)
+    col2.button("Finish", on_click=finish)
+
+    # if st.button("Finish"):
+        
         # st.session_state.current_page = 'chat'
         
 
@@ -107,7 +120,7 @@ def navigate():
         if st.session_state.page_number < len(questionnaire_pages) - 1:
             st.session_state.page_number += 1
 
-    col1, _, _,_,_, col2 = st.columns(6)
+    col1, col2 = st.columns(2)
 
     col1.button("Back", on_click=prev)
     col2.button("Next", on_click=next)

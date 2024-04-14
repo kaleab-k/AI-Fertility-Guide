@@ -39,11 +39,17 @@ from assistant import generate_response
 from questions import compile_user_data
 
 def display_response(user_data=None, openai_api_key=None):
+
+
     if user_data is None:
         user_data = compile_user_data()
     
     if not openai_api_key:
         st.info("Please add your OpenAI API key to continue.")
+        st.stop()
+
+    if not st.session_state['profile_updated']:
+        st.info("Please update your profile first to continue.")
         st.stop()
 
     with st.sidebar:

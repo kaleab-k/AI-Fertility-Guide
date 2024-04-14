@@ -51,6 +51,10 @@ def main():
     # elif app_mode == "Figma":
     #     st.session_state.current_page = 'figma'
     
+    # make sure profile is updated
+    st.session_state['profile_updated'] = False
+
+
     if 'current_page' not in st.session_state:
         st.session_state['current_page'] = 'welcome'  # Default page
 
@@ -62,10 +66,6 @@ def main():
         display_response(openai_api_key=openai_api_key)
     elif st.session_state['current_page'] == 'figma':
         figma_ui()
-
-def go_to_questions():
-    app_mode == "Fill Questionnaire"
-    st.session_state['current_page'] = 'questions'
 
 def welcome_page():
     st.title("Welcome to EmpowerCare!")
@@ -79,7 +79,7 @@ def welcome_page():
     st.header("Get Started")
     st.success("Ready to explore your personalized reproductive health options? Click 'Get Started' to begin a journey tailored just for you. You’ll answer some simple questions to help us understand your needs and preferences. From there, we’ll provide you with customized advice and resources to make informed decisions about your health. Let’s take this step together—your empowered path starts now.", icon="🏃")
 
-    st.button("Get Started", on_click=go_to_questions)
+    st.button("Get Started", on_click=lambda: setattr(st.session_state, 'current_page', 'questions'))
         
 
 if __name__ == "__main__":
