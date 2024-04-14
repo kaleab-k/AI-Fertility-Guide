@@ -2,6 +2,7 @@ import streamlit as st
 from streamlit_card import card
 from st_audiorec import st_audiorec
 from assistant import PetalAssitant
+import base64
 
 
 def create_card(title, text, another_text, is_active=False):
@@ -102,9 +103,10 @@ def figma_profile(openai_api_key):
 
     if wav_audio_data is not None:
         st.audio(wav_audio_data, format='audio/wav')
+        audio_data_bytes = base64.b64decode(wav_audio_data.split(',')[1])
 
         assistant = assistant = PetalAssitant(openai_api_key)
-        transcription = assistant.transcribe(wav_audio_data)
+        transcription = assistant.transcribe(audio_data_bytes)
         
         st.text_area(transcription)
 
