@@ -69,7 +69,7 @@ def main():
         clinics()
 
 def welcome_page():
-    st.title("Welcome to PetalHealth!")
+    # st.title("Welcome to PetalHealth!")
 
     st.image("asset/petal_cover.png")
 
