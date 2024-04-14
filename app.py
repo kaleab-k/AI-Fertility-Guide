@@ -133,7 +133,7 @@ def welcome_page():
     with col3:
         # st.markdown("#### Personalized Recommendations")
         # st.write("Based on your profile, we can provide personalized and precision reproductive health recommendations.")
-        create_card("Personalized Recommendations", "Based on your profile, we can provide personalized and precision reproductive health recommendations.")
+        create_card("Personalized Recommendations", "Based on your unique profile, we can provide personalized and precision reproductive health recommendation, finely tuned to meet your specific needs and preferences.")
     
         st.button("Get Started", on_click=lambda: setattr(st.session_state, 'current_page', 'questions'))
         
