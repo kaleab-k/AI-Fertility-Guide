@@ -103,8 +103,8 @@ def figma_profile(openai_api_key):
     if wav_audio_data is not None:
         st.audio(wav_audio_data, format='audio/wav')
 
-    assistant = assistant = PetalAssitant(openai_api_key)
-    transcription = assistant.transcribe(wav_audio_data)
-    
-    st.text_area(transcription)
+        assistant = assistant = PetalAssitant(openai_api_key)
+        transcription = assistant.transcribe(wav_audio_data)
+        
+        st.text_area(transcription)
 
