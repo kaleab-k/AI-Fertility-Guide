@@ -22,7 +22,7 @@ def collect_user_needs():
         assistant = assistant = PetalAssitant(openai_api_key)
         transcription = assistant.transcribe(file_name)
         
-        st.text_area("Feel free to edit the transcription: ", value=transcription)
+        st.text_area("Feel free to edit the transcription: ", value=transcription, key="user_needs")
 
         navigate()
 
@@ -90,6 +90,29 @@ def preferences_concerns():
     st.radio("Would you be interested in a follow-up consultation with a healthcare provider?", ["Yes", "No"], key="consultation_interest")
     
     navigate()
+
+def collect_other_info():
+    openai_api_key = st.session_state.openai_api_key
+    st.write("Tell us more about your lifestyle factors, mental health, economic factors.")
+    wav_audio_data = st_audiorec()
+
+    def save_audio_file(audio_bytes, file_extension):
+        file_name = f"audio_more_info.{file_extension}"
+
+        with open(file_name, "wb") as f:
+            f.write(audio_bytes)
+        return file_name
+    
+    if wav_audio_data is not None:
+        # st.audio(wav_audio_data, format='audio/wav')
+        file_name = save_audio_file(wav_audio_data, "mp3")
+
+        assistant = assistant = PetalAssitant(openai_api_key)
+        transcription = assistant.transcribe(file_name)
+        
+        st.text_area("Feel free to edit the transcription: ", value=transcription, key="user_more_info")
+
+        navigate()
 
 def privacy_concent():
     # Feedback and Consent
