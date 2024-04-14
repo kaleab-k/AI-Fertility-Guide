@@ -1,7 +1,7 @@
 import streamlit as st
 from streamlit_card import card
 
-def create_card(title, text, is_active=False):
+def create_card(title, text, another_text, is_active=False):
     return card(
         title=title,
         text=text,
