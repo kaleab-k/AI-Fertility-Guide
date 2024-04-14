@@ -3,7 +3,7 @@ import streamlit as st
 def figma_ui():
     # Defining the layout using columns and sidebar
     with st.sidebar:
-        st.image("path_to_logo.png")  # You'll need to add the MOJO logo image in your local directory.
+        st.image("https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Mojo_%28magazine%29_Logo.svg/1280px-Mojo_%28magazine%29_Logo.svg.png")
         st.markdown("## Screen 1")
         st.button("Learn")
         st.button("Resources")
@@ -15,7 +15,7 @@ def figma_ui():
         st.button("Help")
 
     # Main section with user profile and search bar
-    user_name = "Thomas Anree"  # Example username, you might want to make this dynamic
+    user_name = "Thomas Anree"
     st.sidebar.text(user_name)
 
     search_bar = st.text_input("", placeholder="Ask or upload anything...")
