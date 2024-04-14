@@ -86,7 +86,7 @@ def welcome_page():
                     "filter": "drop-shadow(0px 23px 12px rgba(0,0,0,0.10000000149011612))",
                     "border-radius":"20px",
                     "margin": "20px",
-                    "padding":"10px",
+                    "padding":"20px",
                     "display":"flex",
                     "flex-direction":"column",
             #         "gap":"30px",
