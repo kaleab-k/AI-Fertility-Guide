@@ -11,6 +11,7 @@ def clinics():
     assistant = assistant = PetalAssitant(openai_api_key)
 
     response = assistant.get_clinics(zip_code)
+    st.write(response)
 
     # Convert dictionary to pandas DataFrame
     clinics_df = pd.DataFrame(response['clinics'])
@@ -22,4 +23,4 @@ def clinics():
     st.map(clinics_df)
 
 
-    st.write(response)
+    
