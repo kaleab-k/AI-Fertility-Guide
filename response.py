@@ -2,6 +2,7 @@ import streamlit as st
 from gtts import gTTS
 from io import BytesIO
 from pathlib import Path
+import base64
 
 # def text_to_speech(response):
 #     tts = gTTS(text=response, lang='en', slow=False)
@@ -18,6 +19,20 @@ def text_to_speech(client, text, voice):
       input=text
     )
     response.stream_to_file(speech_file_path)
+
+def autoplay_audio(file_path: str):
+    with open(file_path, "rb") as f:
+        data = f.read()
+        b64 = base64.b64encode(data).decode()
+        md = f"""
+            <audio controls autoplay="true">
+            <source src="data:audio/mp3;base64,{b64}" type="audio/mp3">
+            </audio>
+            """
+        st.markdown(
+            md,
+            unsafe_allow_html=True,
+        )
 
 
 from assistant import generate_response
@@ -52,9 +67,10 @@ def display_response(user_data=None, openai_api_key=None):
 
     ## convert to speech
     text_to_speech(client, response, "nova")
-    audio_file = open("audio.mp3", 'rb')
-    audio_bytes = audio_file.read()
-    st.audio(audio_bytes, format='audio/mpeg')
+    # audio_file = open("audio.mp3", 'rb')
+    # audio_bytes = audio_file.read()
+    # st.audio(audio_bytes, format='audio/mpeg')
+    autoplay_audio("audio.mp3")
 
     # st.write(response)
     st.chat_message("assistant").write(response)
