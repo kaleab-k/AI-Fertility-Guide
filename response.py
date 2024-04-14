@@ -78,8 +78,10 @@ def display_response(user_data=None, openai_api_key=None):
     if "messages" not in st.session_state:
         st.session_state["messages"] = [{"role": "assistant", "content": "How can I further assist you?"}]
 
-    for msg in st.session_state.messages:
-        st.chat_message(msg["role"]).write(msg["content"])
+    st.chat_message("assistant").write("How can I further assist you?")
+
+    # for msg in st.session_state.messages:
+    #     st.chat_message(msg["role"]).write(msg["content"])
 
     if prompt := st.chat_input():
         # client = OpenAI(api_key=openai_api_key)
