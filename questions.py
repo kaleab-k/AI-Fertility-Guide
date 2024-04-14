@@ -146,6 +146,7 @@ questionnaire_pages = [
         ("Insurance Information", collect_insurance_info),
         ("Future Planning", collect_future_planning),
         ("Preferences", preferences_concerns),
+        ("Other Information", collect_other_info),
         ("Privacy", privacy_concent)
     ]
     
