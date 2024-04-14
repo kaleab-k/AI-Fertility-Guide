@@ -94,14 +94,14 @@ def welcome_page():
                     "outline": "blue" if is_active else "none"
                     },
                     "text": {
-                        "color": "#777"
+                        "color": "#ccc"
                     },
                     "title": {
-                        "color": "#444"
+                        "color": "#eee"
                     },
                     "filter": {
                         "background-color": "#a8eb12",  # <- make the image not dimmed anymore  
-                        "background-image": "linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12)"
+                        "background-image": "linear-gradient(to bottom, #051937, #004d7a, #008793, #00bf72, #a8eb12)"
                     }
             }
 
