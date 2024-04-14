@@ -21,10 +21,10 @@ def create_card(title, text, another_text, is_active=False):
                 "outline": "blue" if is_active else "none"
                 },
                 "text": {
-                    "color": "#ddd"
+                    "color": "#333"
                 },
                 "title": {
-                    "color": "#eee"
+                    "color": "#111"
                 },
                  "filter": {
                     "background-color": "rgba(0, 0, 0, 0)"  # <- make the image not dimmed anymore  
