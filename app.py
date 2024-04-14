@@ -70,14 +70,16 @@ def main():
 def welcome_page():
     st.title("Welcome to PetalHealth!")
 
-    st.header("Greetings")
-    st.write("Welcome to PetalHealth! We're excited to guide you through your personalized reproductive health journey. Our platform is designed to offer you tailored advice, clear information, and support that respects your unique needs and privacy. Get started today and take the first step towards informed and empowered health decisions. Thank you for trusting PetalHealth—where your health and privacy come first.")
+    st.image("asset/petal_cover.png")
 
-    st.header("Privacy")
-    st.info("At PetalHealth, your privacy is our top priority. To protect your personal information, our system only uses state-of-the-art security measures and adheres to the strictest data protection standards. We employ advanced encryption technologies to secure all data transmissions and store information in compliance with leading privacy laws, including HIPAA. Our platform is designed to ensure that your personal details are accessed only by authorized personnel and only for the purpose of enhancing your experience and providing the services you need.", icon="🔒")
+    # st.header("Greetings")
+    # st.write("Welcome to PetalHealth! We're excited to guide you through your personalized reproductive health journey. Our platform is designed to offer you tailored advice, clear information, and support that respects your unique needs and privacy. Get started today and take the first step towards informed and empowered health decisions. Thank you for trusting PetalHealth—where your health and privacy come first.")
 
-    st.header("Get Started")
-    st.success("Ready to explore your personalized reproductive health options? Click 'Get Started' to begin a journey tailored just for you. You’ll answer some simple questions to help us understand your needs and preferences. From there, we’ll provide you with customized advice and resources to make informed decisions about your health. Let’s take this step together—your empowered path starts now.", icon="🏃")
+    # st.header("Privacy")
+    # st.info("At PetalHealth, your privacy is our top priority. To protect your personal information, our system only uses state-of-the-art security measures and adheres to the strictest data protection standards. We employ advanced encryption technologies to secure all data transmissions and store information in compliance with leading privacy laws, including HIPAA. Our platform is designed to ensure that your personal details are accessed only by authorized personnel and only for the purpose of enhancing your experience and providing the services you need.", icon="🔒")
+
+    # st.header("Get Started")
+    # st.success("Ready to explore your personalized reproductive health options? Click 'Get Started' to begin a journey tailored just for you. You’ll answer some simple questions to help us understand your needs and preferences. From there, we’ll provide you with customized advice and resources to make informed decisions about your health. Let’s take this step together—your empowered path starts now.", icon="🏃")
 
     st.button("Get Started", on_click=lambda: setattr(st.session_state, 'current_page', 'questions'))
         
