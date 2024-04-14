@@ -30,7 +30,7 @@ def main():
     # app_mode = st.sidebar.selectbox("Choose the section", ["Welcome", "Fill Questionnaire", "Chat", "Figma"])
     # Sidebar navigation
     with st.sidebar:
-        st.image("asset/petal-logo.png")
+        st.image("asset/petal-logo-w.png")
         st.markdown("## Navigation")
         st.button("Home", on_click=lambda: setattr(st.session_state, 'current_page', 'welcome'))
         st.button("Profile", on_click=lambda: setattr(st.session_state, 'current_page', 'questions'))
