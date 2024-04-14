@@ -1,7 +1,7 @@
 import streamlit as st
 from streamlit_card import card
 
-def create_card(title, text):
+def create_card(title, text, is_active=False):
     return card(
         title=title,
         text=text,
@@ -20,7 +20,11 @@ def create_card(title, text):
                 "border-style":"hidden",
         #         "outline": "none"
                 },
+                 "filter": {
+                    "background-color": "rgba(0, 0, 0, 0)"  # <- make the image not dimmed anymore  
+                }
         }
+
     )
 
 def figma_welcome():
@@ -74,10 +78,10 @@ def figma_profile():
     # Cards for each step
     col1, col2, col3, col4 = st.columns(4)
     with col1:
-        step_card("STEP 1", "Tell us how we can help.", "Start Here", True)
+        create_card("STEP 1", "Tell us how we can help.", "Start Here", True)
     with col2:
-        step_card("STEP 2", "Tell us about yourself.", "In Progress", False)
+        create_card("STEP 2", "Tell us about yourself.", "In Progress", False)
     with col3:
-        step_card("STEP 3", "Learn about your options.", "Pending", False)
+        create_card("STEP 3", "Learn about your options.", "Pending", False)
     with col4:
-        step_card("STEP 3", "Empower your decisions.", "Pending", False)
+        create_card("STEP 3", "Empower your decisions.", "Pending", False)
