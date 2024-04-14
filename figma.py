@@ -29,27 +29,19 @@ def figma_welcome():
     
 def figa_profile():
     # Function to create a single step card
+    def create_card(title, text):
+        return card(
+            title=title,
+            text=text,
+            image="http://placekitten.com/300/250",
+        )
+    
     col1, col2, col3 = st.columns(3)
+
     with col1:
-        card(
-            title="Hello World 1!",
-            text="Some description",
-            image="http://placekitten.com/300/250",
-            url="https://www.google.com",
-            
-        )
+        create_card("Hello World 1!", "Some description")
     with col2:
-        card(
-            title="Hello World 2!",
-            text="Some description",
-            image="http://placekitten.com/300/250",
-            url="https://www.google.com",
-        )
+        create_card("Hello World 2!", "Some description")
     with col3:
-        card(
-            title="Hello World 3!",
-            text="Some description",
-            image="http://placekitten.com/300/250",
-            url="https://www.google.com",
-        )
+        create_card("Hello World 3!", "Some description")
 
