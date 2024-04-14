@@ -76,7 +76,8 @@ def privacy_concent():
         user_data = compile_user_data()
         st.session_state['profile_updated'] = True
         st.success("Profile Submitted Successfully!")
-        st.info(user_data)
+        # st.info(user_data)
+        st.session_state['current_page'] = 'chat'
 
     col1, col2 = st.columns(2)
 
