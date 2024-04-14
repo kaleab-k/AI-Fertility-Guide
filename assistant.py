@@ -8,7 +8,7 @@ class PetalAssitant:
     def __init__(self, api_key) -> None:
         self.api_key = api_key
 
-        self.client = self.get_client(api_key)
+        self.client = self.get_client()
 
     def create_openai_assistant_prompt(self, user_data):
 
