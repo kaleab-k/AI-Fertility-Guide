@@ -128,7 +128,7 @@ def welcome_page():
     with col2:
         # st.markdown("#### Shared Decision-Making")
         # st.write("We help you navigate important conversations through the lens of shared decision-making.")
-        create_card("Shared Decision-Making", "We help you navigate important conversations through the lens of shared decision-making.")
+        create_card("Shared Decision-Making", "We help you navigate important conversations through the lens of shared decision-making, integrating diverse perspectives for more comprehensive and inclusive outcomes.")
 
     with col3:
         # st.markdown("#### Personalized Recommendations")
