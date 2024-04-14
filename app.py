@@ -3,6 +3,7 @@ from questions import questionnaire
 from response import display_response
 from figma import figma_welcome, figma_profile
 from clinics import clinics
+from streamlit_card import card
 
 app_mode = "Welcome"
 
@@ -72,6 +73,40 @@ def welcome_page():
 
     st.image("asset/petal_cover.png")
 
+    def create_card(title, text, another_text, is_active=False):
+        return card(
+            title=title,
+            text=text,
+            image=None,
+            # image="http://placekitten.com/300/250",
+            styles={ "card": {
+                    "width": "100%",
+            #         "background-color":"#ffffff",
+                    "height": "100px",
+                    "filter": "drop-shadow(0px 23px 12px rgba(0,0,0,0.10000000149011612))",
+                    "border-radius":"20px",
+                    "margin": "20px",
+                    "padding":"10px",
+                    "display":"flex",
+                    "flex-direction":"column",
+            #         "gap":"30px",
+                    "border":"1px solid blue" if is_active else "none",
+                    "outline": "blue" if is_active else "none"
+                    },
+                    "text": {
+                        "color": "#777"
+                    },
+                    "title": {
+                        "color": "#444"
+                    },
+                    "filter": {
+                        "background-color": "rgba(0, 0, 0, 0)"  # <- make the image not dimmed anymore  
+                    }
+            }
+
+        )
+
+
     # st.header("Greetings")
     # st.write("Welcome to PetalHealth! We're excited to guide you through your personalized reproductive health journey. Our platform is designed to offer you tailored advice, clear information, and support that respects your unique needs and privacy. Get started today and take the first step towards informed and empowered health decisions. Thank you for trusting PetalHealth—where your health and privacy come first.")
 
@@ -81,6 +116,23 @@ def welcome_page():
     # st.header("Get Started")
     # st.success("Ready to explore your personalized reproductive health options? Click 'Get Started' to begin a journey tailored just for you. You’ll answer some simple questions to help us understand your needs and preferences. From there, we’ll provide you with customized advice and resources to make informed decisions about your health. Let’s take this step together—your empowered path starts now.", icon="🏃")
 
+    col1, col2, col3 = st.columns(3)
+
+    with col1:
+        # st.markdown("#### Reproductive Health Education")
+        # st.write("We provide the most accurate reproductive health information in an easy learning environment suited to different people's needs.")
+        create_card("Reproductive Health Education", "We provide the most accurate reproductive health information in an easy learning environment suited to different people's needs")
+
+    with col2:
+        # st.markdown("#### Shared Decision-Making")
+        # st.write("We help you navigate important conversations through the lens of shared decision-making.")
+        create_card("Shared Decision-Making", "We help you navigate important conversations through the lens of shared decision-making.")
+
+    with col3:
+        # st.markdown("#### Personalized Recommendations")
+        # st.write("Based on your profile, we can provide personalized and precision reproductive health recommendations.")
+        create_card("Personalized Recommendations", "Based on your profile, we can provide personalized and precision reproductive health recommendations.")
+    
     st.button("Get Started", on_click=lambda: setattr(st.session_state, 'current_page', 'questions'))
         
 
