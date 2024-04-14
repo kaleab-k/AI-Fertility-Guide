@@ -97,7 +97,8 @@ def welcome_page():
                         "color": "#444"
                     },
                     "title": {
-                        "color": "#777"
+                        "color": "#777",
+                        "font-size": "1.4em"
                     },
                     "filter": {
                         "background-color": "#a8eb12",  # <- make the image not dimmed anymore  
