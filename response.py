@@ -48,7 +48,7 @@ def display_response(user_data=None, openai_api_key=None):
         st.info("Please add your OpenAI API key to continue.")
         st.stop()
 
-    if not st.session_state['profile_updated']:
+    if 'profile_updated' not in st.session_state:
         st.info("Please update your profile first to continue.")
         st.stop()
 

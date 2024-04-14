@@ -52,7 +52,6 @@ def main():
     #     st.session_state.current_page = 'figma'
     
     # make sure profile is updated
-    st.session_state['profile_updated'] = False
 
 
     if 'current_page' not in st.session_state:
