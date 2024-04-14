@@ -94,10 +94,10 @@ def welcome_page():
                     "outline": "blue" if is_active else "none"
                     },
                     "text": {
-                        "color": "#999"
+                        "color": "#555"
                     },
                     "title": {
-                        "color": "#777",
+                        "color": "#333",
                         "font-size": "1.4em"
                     },
                     "filter": {
