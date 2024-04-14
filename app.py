@@ -2,6 +2,8 @@ import streamlit as st
 from questions import questionnaire
 from response import display_response
 
+app_mode = "Welcome"
+
 def main():
     st.set_page_config(
         page_title="EmpowerCare",
@@ -38,6 +40,7 @@ def main():
         display_response(openai_api_key=openai_api_key)
 
 def go_to_questions():
+    app_mode == "Fill Questionnaire"
     st.session_state['current_page'] = 'questions'
 
 def welcome_page():
