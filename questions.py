@@ -131,7 +131,8 @@ def privacy_concent():
     col1, col2 = st.columns(2)
 
     col1.button("Back", on_click=prev)
-    col2.button("Finish", on_click=finish)
+    if st.session_state.consent == "Yes":
+        col2.button("Finish", on_click=finish)
 
     # if st.button("Finish"):
         
