@@ -7,20 +7,20 @@ def create_card(title, text):
         text=text,
         image=None,
         # image="http://placekitten.com/300/250",
-        styles={ "card": {
-                "width": "100%",
-                "background-color":"#ffffff",
-                "height": "320px",
-                "filter": "drop-shadow(0px 23px 12px rgba(0,0,0,0.10000000149011612))",
-                "border-radius":"20px",
-                "padding":"40px",
-                "display":"flex",
-                "flex-direction":"column",
-                "gap":"30px",
-                "border-style":"hidden",
-                "outline": "none"
-                },
-        }
+        # styles={ "card": {
+        #         "width": "100%",
+        #         "background-color":"#ffffff",
+        #         "height": "320px",
+        #         "filter": "drop-shadow(0px 23px 12px rgba(0,0,0,0.10000000149011612))",
+        #         "border-radius":"20px",
+        #         "padding":"40px",
+        #         "display":"flex",
+        #         "flex-direction":"column",
+        #         "gap":"30px",
+        #         "border-style":"hidden",
+        #         "outline": "none"
+        #         },
+        # }
     )
 
 def figma_welcome():
