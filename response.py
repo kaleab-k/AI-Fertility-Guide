@@ -1,6 +1,7 @@
 import streamlit as st
 from io import BytesIO
-from pathlib import Path
+from assistant import PetalAssitant
+
 import base64
 
 # def text_to_speech(response):
@@ -10,14 +11,7 @@ import base64
 #     audio_buffer.seek(0)
 #     return audio_buffer
 
-def text_to_speech(client, text, voice):
-    speech_file_path = Path("audio.mp3")
-    response = client.audio.speech.create(
-      model="tts-1",
-      voice=voice,
-      input=text
-    )
-    response.stream_to_file(speech_file_path)
+
 
 def autoplay_audio(file_path: str):
     with open(file_path, "rb") as f:
@@ -68,10 +62,11 @@ def display_response(user_data=None, openai_api_key=None):
     st.title("💬 Your Personalized Advice")
     st.caption("🚀 EmpowerCare Chatbot powered by OpenAI LLM")
     # Assuming generate_advice is a function that sends data to OpenAI and gets a response
-    client, response = generate_response(user_data, openai_api_key)
+    assistant = PetalAssitant(openai_api_key)
+    response = assistant.generate_response(user_data, openai_api_key)
 
     ## convert to speech
-    text_to_speech(client, response, "nova")
+    assistant.text_to_speech(response, "nova")
     # audio_file = open("audio.mp3", 'rb')
     # audio_bytes = audio_file.read()
     # st.audio(audio_bytes, format='audio/mpeg')
@@ -90,9 +85,9 @@ def display_response(user_data=None, openai_api_key=None):
         # client = OpenAI(api_key=openai_api_key)
         st.session_state.messages.append({"role": "user", "content": prompt})
         st.chat_message("user").write(prompt)
-        response = client.chat.completions.create(model="gpt-4-turbo", messages=st.session_state.messages)
-        msg =  response.choices[0].message.content
-        st.session_state.messages.append({"role": "assistant", "content": msg})
+        response = assistant.chat(messages=st.session_state.messages)
+        
+        st.session_state.messages.append({"role": "assistant", "content": response})
         st.chat_message("assistant").write(msg)
 
 def save_feedback(user_data, feedback):

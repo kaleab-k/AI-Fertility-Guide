@@ -1,6 +1,7 @@
 import streamlit as st
 from streamlit_card import card
 from st_audiorec import st_audiorec
+from assistant import PetalAssitant
 
 
 def create_card(title, text, another_text, is_active=False):
@@ -77,7 +78,7 @@ def step_card(title, description, button_label, is_active):
             button_outcome(button_label)
 
 
-def figma_profile():
+def figma_profile(openai_api_key):
     # Function to create a single step car
 
     # Title and subtitle
@@ -101,3 +102,9 @@ def figma_profile():
 
     if wav_audio_data is not None:
         st.audio(wav_audio_data, format='audio/wav')
+
+    assistant = assistant = PetalAssitant(openai_api_key)
+    transcription = assistant.transcribe(wav_audio_data)
+    
+    st.text_area(transcription)
+
