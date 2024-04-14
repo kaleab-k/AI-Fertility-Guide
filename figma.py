@@ -1,19 +1,6 @@
 import streamlit as st
 
 def figma_ui():
-    # Defining the layout using columns and sidebar
-    with st.sidebar:
-        st.image("https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Mojo_%28magazine%29_Logo.svg/1280px-Mojo_%28magazine%29_Logo.svg.png")
-        st.markdown("## Screen 1")
-        st.button("Learn")
-        st.button("Resources")
-        st.button("Get Care")
-        st.button("Messages")
-        st.button("Privacy")
-        st.button("Patient Data")
-        st.button("Partners")
-        st.button("Help")
-
     # Main section with user profile and search bar
     user_name = "Thomas Anree"
     st.sidebar.text(user_name)

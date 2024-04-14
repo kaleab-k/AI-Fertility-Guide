@@ -19,16 +19,24 @@ def main():
         },
         layout="wide"
     )
-    
+
     def local_css(file_name):
         with open(file_name) as f:
             st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
     local_css("style.css")
 
-
-    st.sidebar.title("Navigation")
-    app_mode = st.sidebar.selectbox("Choose the section", ["Welcome", "Fill Questionnaire", "Chat", "Figma"])
+    # st.sidebar.title("Navigation")
+    # app_mode = st.sidebar.selectbox("Choose the section", ["Welcome", "Fill Questionnaire", "Chat", "Figma"])
+    with st.sidebar:
+        st.image("https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Mojo_%28magazine%29_Logo.svg/1280px-Mojo_%28magazine%29_Logo.svg.png")
+        st.markdown("## Navigation")
+        st.button("Home")
+        st.button("Profile")
+        st.button("Get Care")
+        st.button("Privacy")
+        st.button("Partners")
+        st.button("Help")
 
     with st.sidebar:
         openai_api_key = st.text_input("OpenAI API Key", key="chatbot_api_key", type="password")
