@@ -1,0 +1,77 @@
+import streamlit as st
+
+def collect_personal_info():
+    # Personal Information
+    st.number_input("What is your age?", min_value=12, max_value=100, key="age")
+    st.selectbox("What is your gender identity?", ["Male", "Female", "Non-binary", "Prefer not to say"], key="gender")
+    st.text_input("What is your zip code or city of residence?", key="zip_code")
+    st.selectbox("What is your current employment status?", ["Employed", "Unemployed", "Student", "Retired"], key="employment_status")
+
+    navigate()
+
+def collect_health_status():
+    # Health Status
+    st.selectbox("How would you describe your overall health?", ["Excellent", "Good", "Fair", "Poor"], key="health")
+    st.radio("Are you currently taking any medications?", ["Yes", "No"], key="current_medications")
+    if st.session_state.current_medications == "Yes":
+        st.text_area("Types of medications being used", key="medication_types")
+    st.radio("Do you have any known allergies or adverse reactions to medications?", ["Yes", "No"], key="allergies")
+    if st.session_state.allergies == "Yes":
+        st.text_area("List of allergies", key="allergies_list")
+    st.radio("Do you have any known health conditions that affect your reproductive health?", ["Yes", "No"], key="known_conditions")
+    if st.session_state.known_conditions == "Yes":
+        st.text_area("List health conditions", key="known_conditions_list")
+
+    navigate()
+
+def collect_lifestyle_factors():
+    # Lifestyle Factors
+    st.radio("How often do you engage in physical activity?", ["Daily", "Several times a week", "Weekly", "Rarely", "Never"], key="physical_activity")
+    st.radio("Do you smoke or use tobacco products?", ["Yes", "No"], key="smoking_status")
+    st.radio("How often do you consume alcoholic beverages?", ["Regularly", "Occasionally", "Rarely", "Never"], key="alcohol_consumption")
+
+    navigate()
+
+def collect_mental_health():
+    # Mental Health
+    st.radio("Have you experienced stress, anxiety, or depression in the last year?", ["Yes", "No"], key="mental_health_status")
+    if st.session_state.mental_health_status == "Yes":
+        st.text_area("Are you currently receiving any mental health treatment or counseling?", key="mental_health_treatment")
+
+    navigate()
+
+def collect_economic_factors():
+    # Economic Factors
+    st.selectbox("What is your household income range?", ["Below $20,000", "$20,000 to $50,000", "$50,000 to $100,000", "Above $100,000"], key="income_range")
+    st.radio("Do you face any financial barriers to accessing medical care?", ["Yes", "No"], key="financial_barriers")
+
+    navigate()
+
+# Other sections (Reproductive History, Insurance Information, Future Planning, Preferences, Privacy) remain the same
+
+def questionnaire():
+    questionnaire_pages = [
+        ("Personal Information", collect_personal_info),
+        ("Health Status", collect_health_status),
+        ("Lifestyle Factors", collect_lifestyle_factors),
+        ("Mental Health", collect_mental_health),
+        ("Economic Factors", collect_economic_factors),
+        ("Reproductive History", collect_reproductive_history),
+        ("Insurance Information", collect_insurance_info),
+        ("Future Planning", collect_future_planning),
+        ("Preferences", preferences_concerns),
+        ("Privacy", privacy_concent)
+    ]
+
+    if 'page_number' not in st.session_state:
+        st.session_state.page_number = 0
+
+    if st.session_state.page_number < len(questionnaire_pages):
+        page_title, page_function = questionnaire_pages[st.session_state.page_number]
+        st.progress((st.session_state.page_number + 1) / len(questionnaire_pages))
+        st.header(page_title)
+        page_function()
+    else:
+        st.session_state.page_number = 0  # Reset for reusability
+
+# The navigation function (navigate()) and data compilation function (compile_user_data()) remain unchanged.
