@@ -15,7 +15,7 @@ def clinics():
 
     response = assistant.get_clinics(zip_code)
 
-    response ={ 
+    response = { 
                     "clinics": [
                         {
                             "name": "Dr. Michael Dimattina, MD",
@@ -40,7 +40,8 @@ def clinics():
                 
     # st.write(response)
 
-    res = response #json.loads(response)
+    # res = json.loads(response)
+    res = response
 
     # Convert dictionary to pandas DataFrame
     clinics_df = pd.DataFrame(res['clinics'])

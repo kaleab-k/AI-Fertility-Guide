@@ -75,6 +75,8 @@ class PetalAssitant:
         prompt += "- Suggest local clinics that accept the user's insurance and offer required services, considering any cultural or ethical preferences.\n"
         prompt += "- Include personalized learning resources based on the user's preferred learning method: {user_data.get('learning_preferences', 'No preference')}.\n"
 
+        prompt += "Restrict your sources to reliable sources such as https://www.statpearls.com/, https://data.medicaid.gov/, and https://usafacts.org/"
+
         return prompt
 
 
@@ -86,7 +88,7 @@ class PetalAssitant:
             name="Petal Health Agent",
             instructions="You are an expert in reproductive health and personalized medical consultation. Your task is to interact with users in a sensitive and informative manner to collect detailed personal and medical information. Use this information to provide tailored advice on contraception, fertility planning, and healthcare navigation. ",
             tools=[{"type": "retrieval"}],
-            model="gpt-4-turbo",
+            model="gpt-5-nano",
         )
         thread = self.client.beta.threads.create()
         return assistant, thread
@@ -96,7 +98,7 @@ class PetalAssitant:
 
         prompt = self.create_openai_assistant_prompt(user_data)
 
-        response = self.client.chat.completions.create(model="gpt-4-turbo", messages=[{"role": "assistant", "content": prompt}])
+        response = self.client.chat.completions.create(model="gpt-5-nano", messages=[{"role": "assistant", "content": prompt}])
         
         return response.choices[0].message.content
         
@@ -121,7 +123,7 @@ class PetalAssitant:
             
     
     def chat(self, messages):
-        response = self.client.chat.completions.create(model="gpt-4-turbo", messages=messages)
+        response = self.client.chat.completions.create(model="gpt-5-nano", messages=messages)
         # message = self.client.beta.threads.messages.create(
         #     thread_id=self.thread.id,
         #     role="user",
@@ -153,7 +155,7 @@ class PetalAssitant:
                         }
                     ]}
                  '''
-        response = self.client.chat.completions.create(model="gpt-4-turbo", messages=[{"role": "assistant", "content": prompt}])
+        response = self.client.chat.completions.create(model="gpt-5-nano", messages=[{"role": "assistant", "content": prompt}])
 
         return response.choices[0].message.content
 
