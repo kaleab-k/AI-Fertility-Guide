@@ -29,7 +29,7 @@ def collect_user_needs():
 def collect_personal_info():
     # Personal Information
     st.number_input("What is your age?", min_value=12, max_value=100, key="age")
-    st.selectbox("What is your gender identity?", ["Male", "Female", "Non-binary", "Prefer not to say"], key="gender")
+    st.selectbox("What is your gender identity?", ["Male", "Female", "Prefer not to say"], key="gender")
     st.text_input("What is your zip code or city of residence?", key="zip_code")
     st.selectbox("What is your current employment status?", ["Employed", "Unemployed", "Student", "Retired"], key="employment_status")
 
